@@ -1,0 +1,133 @@
+---
+import type { Engagement } from '../data/engagements';
+import type { Locale } from '../i18n/locale';
+import { t } from '../i18n/ui';
+
+interface Props {
+  engagement: Engagement;
+  locale?: Locale;
+}
+
+const { engagement, locale = 'ja' } = Astro.props;
+---
+
+<article class="engagement-card">
+  <p class="engagement-card__role">{engagement.role}</p>
+  <h3>{engagement.organization}</h3>
+  <p class="engagement-card__program">{engagement.program}</p>
+  <p class="engagement-card__description">{engagement.description}</p>
+  {engagement.date && <p class="engagement-card__meta">{engagement.date}</p>}
+  {engagement.audience && <p class="engagement-card__meta">{engagement.audience}</p>}
+  {engagement.venue && <p class="engagement-card__meta">{engagement.venue}</p>}
+  {engagement.panelists && engagement.panelists.length > 0 && (
+    <div class="engagement-card__panelists">
+      <p class="engagement-card__panelists-title">{t('panelists', locale)}</p>
+      <ul>
+        {engagement.panelists.map((person) => (
+          <li>
+            <strong>{person.role}</strong> — {person.name}
+            {locale === 'ja' ? `（${person.affiliation}）` : `, ${person.affiliation}`}
+          </li>
+        ))}
+      </ul>
+    </div>
+  )}
+  {engagement.topics.length > 0 && (
+    <ul class="engagement-card__topics">
+      {engagement.topics.map((topic) => (
+        <li>{topic}</li>
+      ))}
+    </ul>
+  )}
+  {engagement.url && (
+    <p class="engagement-card__link">
+      <a href={engagement.url} target="_blank" rel="noopener noreferrer">
+        {t('viewDetails', locale)}
+      </a>
+    </p>
+  )}
+</article>
+
+<style>
+  .engagement-card {
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .engagement-card:last-child {
+    border-bottom: none;
+  }
+
+  .engagement-card__role {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: var(--color-primary);
+    margin-bottom: 0.35rem;
+  }
+
+  .engagement-card h3 {
+    font-size: 1.125rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .engagement-card__program {
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+  }
+
+  .engagement-card__description {
+    color: var(--color-text-muted);
+    margin-bottom: 0.75rem;
+    line-height: 1.8;
+  }
+
+  .engagement-card__meta {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    margin-bottom: 0.25rem;
+  }
+
+  .engagement-card__panelists {
+    margin: 0.75rem 0;
+  }
+
+  .engagement-card__panelists-title {
+    font-size: 0.875rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .engagement-card__panelists ul {
+    margin: 0;
+    padding-left: 1.25rem;
+    color: var(--color-text-muted);
+    font-size: 0.9375rem;
+  }
+
+  .engagement-card__panelists li {
+    margin-bottom: 0.35rem;
+  }
+
+  .engagement-card__topics {
+    margin: 0.75rem 0 0;
+    padding-left: 1.25rem;
+    color: var(--color-text-muted);
+    font-size: 0.9375rem;
+  }
+
+  .engagement-card__link {
+    margin: 1rem 0 0;
+    font-size: 0.875rem;
+  }
+
+  .engagement-card__link a {
+    color: var(--color-primary);
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .engagement-card__link a:hover {
+    text-decoration: underline;
+  }
+</style>

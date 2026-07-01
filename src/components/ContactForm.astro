@@ -1,64 +1,135 @@
 ---
-const categories = [
-  { value: 'service', label: 'サービス内容について' },
-  { value: 'press', label: '取材・プレス関連について' },
-  { value: 'recruitment', label: '採用について' },
-  { value: 'other', label: 'その他' },
-];
+import type { Locale } from '../i18n/locale';
+
+interface Props {
+  locale?: Locale;
+}
+
+const locale = Astro.props.locale ?? 'ja';
+
+const copy =
+  locale === 'ja'
+    ? {
+        category: 'お問い合わせ内容',
+        categoryPlaceholder: '選択してください',
+        categories: [
+          { value: 'service', label: 'サービス内容について' },
+          { value: 'press', label: '取材・プレス関連について' },
+          { value: 'recruitment', label: '採用について' },
+          { value: 'other', label: 'その他' },
+        ],
+        company: '法人名・団体名',
+        name: 'お名前',
+        email: 'ご連絡先メールアドレス',
+        phone: 'ご連絡先電話番号',
+        message: 'お問い合わせ詳細',
+        privacyPrefix: '',
+        privacyLink: '個人情報の取扱いに関する同意書',
+        privacySuffix: 'を読み、同意しました',
+        submit: '入力内容を送信',
+        submitting: '送信中...',
+        privacyError: '個人情報の取扱いに同意してください。',
+        submitError: '送信に失敗しました',
+        thanksPath: '/contact/thanks',
+      }
+    : {
+        category: 'Inquiry type',
+        categoryPlaceholder: 'Please select',
+        categories: [
+          { value: 'service', label: 'About our services' },
+          { value: 'press', label: 'Media / press' },
+          { value: 'recruitment', label: 'Recruitment' },
+          { value: 'other', label: 'Other' },
+        ],
+        company: 'Company / organization',
+        name: 'Name',
+        email: 'Email address',
+        phone: 'Phone number',
+        message: 'Message',
+        privacyPrefix: 'I have read and agree to the ',
+        privacyLink: 'Privacy Policy',
+        privacySuffix: '',
+        submit: 'Submit',
+        submitting: 'Sending...',
+        privacyError: 'Please agree to the privacy policy.',
+        submitError: 'Submission failed',
+        thanksPath: '/en/contact/thanks',
+      };
+
+const privacyHref = locale === 'ja' ? '/privacypolicy' : '/en/privacypolicy';
 ---
 
-<form class="contact-form" id="contact-form" novalidate>
+<form class="contact-form" id="contact-form" novalidate data-locale={locale}>
   <div id="form-message" class="form-message" hidden></div>
 
   <div class="form-group">
-    <label for="category">お問い合わせ内容<span class="required">*</span></label>
+    <label for="category">{copy.category}<span class="required">*</span></label>
     <select id="category" name="category" required>
-      <option value="">選択してください</option>
-      {categories.map((c) => (
+      <option value="">{copy.categoryPlaceholder}</option>
+      {copy.categories.map((c) => (
         <option value={c.value}>{c.label}</option>
       ))}
     </select>
   </div>
 
   <div class="form-group">
-    <label for="company">法人名・団体名<span class="required">*</span></label>
+    <label for="company">{copy.company}<span class="required">*</span></label>
     <input type="text" id="company" name="company" required />
   </div>
 
   <div class="form-group">
-    <label for="name">お名前<span class="required">*</span></label>
+    <label for="name">{copy.name}<span class="required">*</span></label>
     <input type="text" id="name" name="name" required />
   </div>
 
   <div class="form-group">
-    <label for="email">ご連絡先メールアドレス<span class="required">*</span></label>
+    <label for="email">{copy.email}<span class="required">*</span></label>
     <input type="email" id="email" name="email" required />
   </div>
 
   <div class="form-group">
-    <label for="phone">ご連絡先電話番号</label>
+    <label for="phone">{copy.phone}</label>
     <input type="tel" id="phone" name="phone" />
   </div>
 
   <div class="form-group">
-    <label for="message">お問い合わせ詳細<span class="required">*</span></label>
+    <label for="message">{copy.message}<span class="required">*</span></label>
     <textarea id="message" name="message" required></textarea>
   </div>
 
   <div class="form-group form-checkbox">
     <input type="checkbox" id="privacy" name="privacy" required />
     <label for="privacy">
-      <a href="/privacypolicy" target="_blank">個人情報の取扱いに関する同意書</a>を読み、同意しました
+      {copy.privacyPrefix}
+      <a href={privacyHref} target="_blank">{copy.privacyLink}</a>
+      {copy.privacySuffix}
     </label>
   </div>
 
-  <button type="submit" class="btn btn--primary" id="submit-btn">入力内容を送信</button>
+  <button type="submit" class="btn btn--primary" id="submit-btn">{copy.submit}</button>
 </form>
 
 <script>
   const form = document.getElementById('contact-form') as HTMLFormElement;
   const messageEl = document.getElementById('form-message') as HTMLDivElement;
   const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+  const locale = form?.dataset.locale === 'en' ? 'en' : 'ja';
+  const copy =
+    locale === 'ja'
+      ? {
+          privacyError: '個人情報の取扱いに同意してください。',
+          submitError: '送信に失敗しました',
+          submitting: '送信中...',
+          submit: '入力内容を送信',
+          thanksPath: '/contact/thanks',
+        }
+      : {
+          privacyError: 'Please agree to the privacy policy.',
+          submitError: 'Submission failed',
+          submitting: 'Sending...',
+          submit: 'Submit',
+          thanksPath: '/en/contact/thanks',
+        };
 
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -68,12 +139,12 @@ const categories = [
     const data = Object.fromEntries(formData.entries());
 
     if (!data.privacy) {
-      showMessage('個人情報の取扱いに同意してください。', 'error');
+      showMessage(copy.privacyError, 'error');
       return;
     }
 
     submitBtn.disabled = true;
-    submitBtn.textContent = '送信中...';
+    submitBtn.textContent = copy.submitting;
 
     try {
       const res = await fetch('/api/contact', {
@@ -85,14 +156,14 @@ const categories = [
       const result = await res.json();
 
       if (!res.ok) {
-        throw new Error(result.error || '送信に失敗しました');
+        throw new Error(result.error || copy.submitError);
       }
 
-      window.location.href = '/contact/thanks';
+      window.location.href = copy.thanksPath;
     } catch (err) {
-      showMessage(err instanceof Error ? err.message : '送信に失敗しました', 'error');
+      showMessage(err instanceof Error ? err.message : copy.submitError, 'error');
       submitBtn.disabled = false;
-      submitBtn.textContent = '入力内容を送信';
+      submitBtn.textContent = copy.submit;
     }
   });
 

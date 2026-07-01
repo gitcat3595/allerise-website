@@ -1,9 +1,9 @@
 ---
-import ArrowLink from '../../components/ArrowLink.astro';
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import PageHero from '../../components/PageHero.astro';
-import { getLocale, localePath } from '../../i18n/locale';
-import { getSiteMeta } from '../../i18n/ui';
+import ArrowLink from '../../../components/ArrowLink.astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PageHero from '../../../components/PageHero.astro';
+import { getLocale, localePath } from '../../../i18n/locale';
+import { getSiteMeta } from '../../../i18n/ui';
 
 const locale = getLocale(Astro.url);
 const site = getSiteMeta(locale);

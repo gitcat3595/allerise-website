@@ -1,0 +1,67 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import ArrowLink from '../../../components/ArrowLink.astro';
+import CtaSection from '../../../components/CtaSection.astro';
+import PageHero from '../../../components/PageHero.astro';
+import ServiceNav from '../../../components/ServiceNav.astro';
+import { getBusinessLine } from '../../../data/business';
+import { getLocale } from '../../../i18n/locale';
+import { getServiceExtra } from '../../../i18n/serviceContent';
+import { getSiteMeta, t } from '../../../i18n/ui';
+
+const locale = getLocale(Astro.url);
+const slug = 'new-business-development';
+const line = getBusinessLine(slug, locale)!;
+const extra = getServiceExtra(slug, locale)!;
+const site = getSiteMeta(locale);
+---
+
+<BaseLayout title={`${line.label} | ${site.name}`}>
+  <PageHero label={line.labelEn} title={line.label} image="/images/service-banner.jpg" />
+
+  <section class="section section--white">
+    <div class="container">
+      <ServiceNav locale={locale} />
+      <div class="prose service-detail">
+        <p>{line.summary}</p>
+        <h2>{t('supportContents', locale)}</h2>
+        <ul>
+          {line.items.map((item) => <li>{item}</li>)}
+        </ul>
+        {extra.sections.map((section) => (
+          <div>
+            {section.title && <h2>{section.title}</h2>}
+            {section.body && <p>{section.body}</p>}
+            {section.ordered && (
+              <ol>
+                {section.ordered.map((step) => (
+                  <li>
+                    <strong>{step.title}</strong> — {step.body}
+                  </li>
+                ))}
+              </ol>
+            )}
+          </div>
+        ))}
+        {extra.links?.map((link) => (
+          <ArrowLink href={link.href}>{link.label}</ArrowLink>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaSection locale={locale} />
+</BaseLayout>
+
+<style>
+  .service-detail h2 {
+    font-size: 1.125rem;
+    color: var(--color-primary);
+    margin-top: 2.5rem;
+  }
+
+  .service-detail .arrow-link {
+    margin-top: 2rem;
+    display: flex;
+  }
+</style>

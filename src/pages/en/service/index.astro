@@ -1,0 +1,34 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import ArrowLink from '../../../components/ArrowLink.astro';
+import BusinessBlock from '../../../components/BusinessBlock.astro';
+import CtaSection from '../../../components/CtaSection.astro';
+import PageHero from '../../../components/PageHero.astro';
+import ServiceNav from '../../../components/ServiceNav.astro';
+import { getBusinessLines } from '../../../data/business';
+import { getLocale, localePath } from '../../../i18n/locale';
+import { getSiteMeta, t } from '../../../i18n/ui';
+
+const locale = getLocale(Astro.url);
+const site = getSiteMeta(locale);
+const businessLines = getBusinessLines(locale);
+---
+
+<BaseLayout title={`${t('servicesTitle', locale)} | ${site.name}`}>
+  <PageHero label="SERVICE" title={t('servicesTitle', locale)} image="/images/service-banner.jpg" />
+
+  <section class="section section--white">
+    <div class="container">
+      <ServiceNav locale={locale} />
+      <p class="section-lead" style="margin-bottom: 2rem;">{t('serviceIndexLead', locale)}</p>
+      {businessLines.map((line) => (
+        <BusinessBlock line={line} locale={locale} />
+      ))}
+      <div style="margin-top: 2rem;">
+        <ArrowLink href={localePath(locale, '/case')}>{t('viewCaseStudies', locale)}</ArrowLink>
+      </div>
+    </div>
+  </section>
+
+  <CtaSection locale={locale} />
+</BaseLayout>

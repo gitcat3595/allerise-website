@@ -1,0 +1,20 @@
+---
+interface Props {
+  label: string;
+  title: string;
+  image?: string;
+  imageAlt?: string;
+}
+
+const { label, title, image, imageAlt = '' } = Astro.props;
+---
+
+<div class="page-hero">
+  <div class="container">
+    <p class="page-hero__label">{label}</p>
+    <h1 class="page-hero__title">{title}</h1>
+  </div>
+  {image && (
+    <img src={image} alt={imageAlt} class="page-hero__image" width="1640" height="480" loading="eager" />
+  )}
+</div>

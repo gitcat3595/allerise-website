@@ -1,10 +1,10 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import ArrowLink from '../../components/ArrowLink.astro';
-import CtaSection from '../../components/CtaSection.astro';
-import { getCase, getCases } from '../../data/cases';
-import { getLocale, localePath } from '../../i18n/locale';
-import { getSiteMeta, t } from '../../i18n/ui';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import ArrowLink from '../../../components/ArrowLink.astro';
+import CtaSection from '../../../components/CtaSection.astro';
+import { getCase, getCases } from '../../../data/cases';
+import { getLocale, localePath } from '../../../i18n/locale';
+import { getSiteMeta, t } from '../../../i18n/ui';
 
 export function getStaticPaths() {
   return getCases('ja').map((c) => ({ params: { slug: c.slug } }));

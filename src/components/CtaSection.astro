@@ -1,38 +1,79 @@
 ---
+import type { Locale } from '../i18n/locale';
+import { localePath } from '../i18n/locale';
+import { t } from '../i18n/ui';
+import ArrowLink from './ArrowLink.astro';
+
 interface Props {
-  title?: string;
-  description?: string;
+  locale?: Locale;
 }
 
-const { title = 'お問い合わせ', description = 'サービスに関するご質問や、取材・パートナーシップのご相談などはこちらからお気軽にご連絡ください。' } = Astro.props;
+const locale = Astro.props.locale ?? 'ja';
 ---
 
-<section class="cta section section--alt">
-  <div class="container cta__inner">
-    <div>
-      <p class="section-label">WORK WITH US</p>
-      <h2 class="section-title">{title}</h2>
-      <p class="section-lead">{description}</p>
+<section class="cta">
+  <div class="cta__grid">
+    <div class="cta__col">
+      <h2 class="cta__title">{t('ctaContactTitle', locale)}</h2>
+      <p class="cta__text">{t('ctaContactText', locale)}</p>
+      <ArrowLink href={localePath(locale, '/contact')} variant="inverse">{t('contactCta', locale)}</ArrowLink>
     </div>
-    <div class="cta__actions">
-      <a href="/contact" class="btn btn--primary">お問い合わせはこちら</a>
-      <a href="/coming-soon" class="btn btn--outline">採用情報はこちら</a>
+    <div class="cta__col">
+      <h2 class="cta__title">{t('ctaCareersTitle', locale)}</h2>
+      <p class="cta__text">{t('ctaCareersText', locale)}</p>
+      <ArrowLink href={localePath(locale, '/coming-soon')} variant="inverse-external">{t('careersCta', locale)}</ArrowLink>
     </div>
   </div>
 </section>
 
 <style>
-  .cta__inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 2rem;
-    flex-wrap: wrap;
+  .cta {
+    background: var(--color-primary);
+    color: #fff;
   }
 
-  .cta__actions {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
+  .cta__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    max-width: var(--max-width);
+    margin-inline: auto;
+  }
+
+  .cta__col {
+    padding: 4rem 3rem;
+    border-right: 1px solid rgba(255, 255, 255, 0.35);
+  }
+
+  .cta__col:last-child {
+    border-right: none;
+  }
+
+  .cta__title {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #fff;
+  }
+
+  .cta__text {
+    margin-bottom: 2rem;
+    line-height: 1.8;
+    max-width: 420px;
+  }
+
+  @media (max-width: 768px) {
+    .cta__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .cta__col {
+      padding: 3rem 1.5rem;
+      border-right: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+    }
+
+    .cta__col:last-child {
+      border-bottom: none;
+    }
   }
 </style>

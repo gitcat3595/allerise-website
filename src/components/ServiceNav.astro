@@ -1,0 +1,66 @@
+---
+import type { Locale } from '../i18n/locale';
+import { localePath } from '../i18n/locale';
+import { getServiceNav, t } from '../i18n/ui';
+
+interface Props {
+  locale?: Locale;
+}
+
+const locale = Astro.props.locale ?? 'ja';
+const serviceNav = getServiceNav(locale);
+const currentPath = Astro.url.pathname;
+const serviceRoot = localePath(locale, '/service');
+---
+
+<nav class="service-nav" aria-label={t('serviceNavLabel', locale)}>
+  <ul>
+    <li>
+      <a href={serviceRoot} class:list={['service-nav__link', { 'is-active': currentPath === serviceRoot }]}>
+        {t('serviceNavAll', locale)}
+      </a>
+    </li>
+    {serviceNav.map((item) => (
+      <li>
+        <a
+          href={item.href}
+          class:list={['service-nav__link', { 'is-active': currentPath === item.href }]}
+        >
+          {item.label}
+        </a>
+      </li>
+    ))}
+  </ul>
+</nav>
+
+<style>
+  .service-nav {
+    margin-bottom: 3rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .service-nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 1.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0 0 1rem;
+  }
+
+  .service-nav__link {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: var(--color-text-muted);
+    text-decoration: none;
+    padding: 0.25rem 0;
+    border-bottom: 2px solid transparent;
+  }
+
+  .service-nav__link:hover,
+  .service-nav__link.is-active {
+    color: var(--color-primary);
+    border-bottom-color: var(--color-primary);
+    text-decoration: none;
+  }
+</style>

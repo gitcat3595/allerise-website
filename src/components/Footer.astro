@@ -1,119 +1,105 @@
 ---
-import { site, nav } from '../data/site';
+import type { Locale } from '../i18n/locale';
+import { localePath } from '../i18n/locale';
+import { getServiceNav, t } from '../i18n/ui';
+
+interface Props {
+  locale?: Locale;
+}
+
+const locale = Astro.props.locale ?? 'ja';
 const year = new Date().getFullYear();
+const serviceNav = getServiceNav(locale);
+const footerLinks = [
+  { href: localePath(locale, '/company'), label: t('companyInfo', locale) },
+  { href: localePath(locale, '/service'), label: t('navService', locale) },
+  ...serviceNav.map((item) => ({ href: item.href, label: item.label })),
+  { href: localePath(locale, '/case'), label: t('navCase', locale) },
+  { href: localePath(locale, '/coming-soon'), label: t('careers', locale), external: true },
+  { href: localePath(locale, '/contact'), label: t('navContact', locale) },
+  { href: localePath(locale, '/privacypolicy'), label: t('privacy', locale) },
+];
 ---
 
 <footer class="footer">
   <div class="container">
-    <div class="footer__grid">
-      <div class="footer__brand">
-        <a href="/" class="footer__logo-link">
-          <img src="/images/logo.png" alt="アレーライズ" class="footer__logo" width="180" height="54" />
-        </a>
-        <p class="footer__locations">{site.locations}</p>
-      </div>
-      <nav class="footer__nav" aria-label="フッターナビゲーション">
-        <ul>
-          {nav.slice(1).map((item) => (
-            <li><a href={item.href}>{item.label}</a></li>
-          ))}
-          <li><a href="/coming-soon">採用情報</a></li>
-          <li><a href="/privacypolicy">プライバシーポリシー</a></li>
-        </ul>
-      </nav>
-      <div class="footer__contact">
-        <a href="/contact" class="btn btn--outline">お問い合わせ</a>
-      </div>
+    <nav class="footer__nav" aria-label={t('footerNav', locale)}>
+      <ul>
+        {footerLinks.map((item) => (
+          <li>
+            <a href={item.href} class:list={[{ 'footer__external': item.external }]}>
+              {item.label}
+              {item.external && (
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                  <polyline points="15 3 21 3 21 9" />
+                  <line x1="10" y1="14" x2="21" y2="3" />
+                </svg>
+              )}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+    <div class="footer__brand">
+      <p class="footer__company">Allerise Pte. Ltd.</p>
+      <p class="footer__locations">Singapore</p>
     </div>
-    <p class="footer__copy">©{site.companyEn} {year}</p>
+    <p class="footer__copy">© Allerise Pte. Ltd. {year}</p>
   </div>
 </footer>
 
 <style>
   .footer {
-    background: var(--color-navy);
-    color: rgba(255, 255, 255, 0.85);
-    padding: 3rem 0 2rem;
-  }
-
-  .footer__grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr auto;
-    gap: 2rem;
-    margin-bottom: 2rem;
-  }
-
-  .footer__logo-link {
-    display: inline-block;
-    margin-bottom: 0.75rem;
-  }
-
-  .footer__logo {
-    height: 32px;
-    width: auto;
-    filter: brightness(0) invert(1);
-    opacity: 0.9;
-  }
-
-  .footer__company {
-    font-weight: 700;
-    font-size: 1rem;
-    margin-bottom: 0.25rem;
-  }
-
-  .footer__company-en {
-    font-family: var(--font-en);
-    font-size: 0.875rem;
-    opacity: 0.8;
-    margin-bottom: 0.5rem;
-  }
-
-  .footer__locations {
-    font-size: 0.875rem;
-    opacity: 0.7;
+    background: var(--color-footer);
+    color: #fff;
+    padding: 2.5rem 0 2rem;
+    text-align: center;
   }
 
   .footer__nav ul {
     list-style: none;
-    margin: 0;
+    margin: 0 0 2rem;
     padding: 0;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.5rem 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem 1.25rem;
   }
 
   .footer__nav a {
-    color: rgba(255, 255, 255, 0.75);
-    font-size: 0.875rem;
+    color: #fff;
+    font-size: 0.8125rem;
     text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
   }
 
   .footer__nav a:hover {
-    color: #fff;
+    opacity: 0.85;
     text-decoration: none;
+  }
+
+  .footer__brand {
+    margin-bottom: 1.5rem;
+  }
+
+  .footer__company {
+    font-weight: 700;
+    font-size: 0.9375rem;
+    margin: 0 0 0.25rem;
+  }
+
+  .footer__locations {
+    font-size: 0.875rem;
+    margin: 0;
+    opacity: 0.9;
   }
 
   .footer__copy {
     font-size: 0.75rem;
-    opacity: 0.5;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding-top: 1.5rem;
+    opacity: 0.85;
     margin: 0;
-  }
-
-  .footer .btn--outline {
-    border-color: rgba(255, 255, 255, 0.4);
-    color: #fff;
-  }
-
-  .footer .btn--outline:hover {
-    background: #fff;
-    color: var(--color-navy);
-  }
-
-  @media (max-width: 768px) {
-    .footer__grid {
-      grid-template-columns: 1fr;
-    }
   }
 </style>

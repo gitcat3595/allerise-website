@@ -2,3 +2,5 @@
 /contact-1 /contact 301
 /news / 301
 /news/* / 301
+/new-business-development /service/new-business-development 301
+/service-individual /service 301

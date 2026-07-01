@@ -1,10 +1,10 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import CtaSection from '../components/CtaSection.astro';
-import PageHero from '../components/PageHero.astro';
-import { getPrivacyContent } from '../data/privacy';
-import { getLocale } from '../i18n/locale';
-import { getSiteMeta, t } from '../i18n/ui';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CtaSection from '../../components/CtaSection.astro';
+import PageHero from '../../components/PageHero.astro';
+import { getPrivacyContent } from '../../data/privacy';
+import { getLocale } from '../../i18n/locale';
+import { getSiteMeta, t } from '../../i18n/ui';
 
 const locale = getLocale(Astro.url);
 const site = getSiteMeta(locale);

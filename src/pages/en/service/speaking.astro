@@ -1,0 +1,93 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import ArrowLink from '../../../components/ArrowLink.astro';
+import CtaSection from '../../../components/CtaSection.astro';
+import EngagementCard from '../../../components/EngagementCard.astro';
+import PageHero from '../../../components/PageHero.astro';
+import ServiceNav from '../../../components/ServiceNav.astro';
+import { getBusinessLine } from '../../../data/business';
+import { engagementsByType, mentoringByGroup } from '../../../data/engagements';
+import { getLocale, localePath } from '../../../i18n/locale';
+import { getSiteMeta, t } from '../../../i18n/ui';
+
+const locale = getLocale(Astro.url);
+const site = getSiteMeta(locale);
+const line = getBusinessLine('speaking', locale)!;
+const speaking = engagementsByType('speaking', locale);
+const mentoringGroups = mentoringByGroup(locale);
+---
+
+<BaseLayout title={`${line.label} | ${site.name}`}>
+  <PageHero label={line.labelEn} title={line.label} image="/images/company-banner.jpg" />
+
+  <section class="section section--white">
+    <div class="container">
+      <ServiceNav locale={locale} />
+      <div class="prose service-detail">
+        <p>{line.summary}</p>
+
+        <h2>{t('speakingHistory', locale)}</h2>
+        <div class="engagement-list">
+          {speaking.map((engagement) => (
+            <EngagementCard engagement={engagement} locale={locale} />
+          ))}
+        </div>
+
+        <h2>{t('mentoring', locale)}</h2>
+        <p class="section-note">{t('mentoringNote', locale)}</p>
+        {mentoringGroups.map((group) => (
+          <div class="mentoring-group">
+            {group.label && <h3>{group.label}</h3>}
+            <div class="engagement-list">
+              {group.items.map((engagement) => (
+                <EngagementCard engagement={engagement} locale={locale} />
+              ))}
+            </div>
+          </div>
+        ))}
+
+        <ArrowLink href={localePath(locale, '/contact')}>{t('speakingContact', locale)}</ArrowLink>
+      </div>
+    </div>
+  </section>
+
+  <CtaSection locale={locale} />
+</BaseLayout>
+
+<style>
+  .service-detail h2 {
+    font-size: 1.125rem;
+    color: var(--color-primary);
+    margin-top: 2.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .service-detail h2:first-of-type {
+    margin-top: 2rem;
+  }
+
+  .service-detail h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .mentoring-group:first-of-type h3 {
+    margin-top: 0;
+  }
+
+  .section-note {
+    color: var(--color-text-muted);
+    margin-bottom: 1.25rem;
+  }
+
+  .engagement-list {
+    margin-bottom: 2rem;
+  }
+
+  .service-detail .arrow-link {
+    margin-top: 1rem;
+  }
+</style>

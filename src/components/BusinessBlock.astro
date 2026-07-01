@@ -1,0 +1,92 @@
+---
+import type { BusinessLine } from '../data/business';
+import type { Locale } from '../i18n/locale';
+import { localePath } from '../i18n/locale';
+import { t } from '../i18n/ui';
+
+interface Props {
+  line: BusinessLine;
+  locale?: Locale;
+}
+
+const { line, locale = 'ja' } = Astro.props;
+---
+
+<article class="business-block" id={line.id}>
+  <p class="business-block__label">{line.labelEn}</p>
+  <h2 class="business-block__title">
+    {line.label}
+    {line.tagline && (
+      <span class="business-block__tagline">
+        {locale === 'ja' ? `（${line.tagline}）` : ` — ${line.tagline}`}
+      </span>
+    )}
+  </h2>
+  <p class="business-block__summary">{line.summary}</p>
+  {line.items.length > 0 && (
+    <ul class="business-block__list">
+      {line.items.map((item) => (
+        <li>{item}</li>
+      ))}
+    </ul>
+  )}
+  <a href={localePath(locale, `/service/${line.slug}`)} class="business-block__more">{t('learnMore', locale)}</a>
+</article>
+
+<style>
+  .business-block {
+    padding: 2.5rem 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .business-block:last-child {
+    border-bottom: none;
+  }
+
+  .business-block__label {
+    font-family: var(--font-en);
+    font-size: 0.875rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .business-block__title {
+    font-size: clamp(1.375rem, 2.5vw, 1.75rem);
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  .business-block__tagline {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+  }
+
+  .business-block__summary {
+    color: var(--color-text-muted);
+    max-width: 720px;
+    margin-bottom: 1.25rem;
+  }
+
+  .business-block__list {
+    margin: 0 0 1.5rem;
+    padding-left: 1.25rem;
+    color: var(--color-text-muted);
+  }
+
+  .business-block__list li {
+    margin-bottom: 0.35rem;
+  }
+
+  .business-block__more {
+    font-weight: 700;
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .business-block__more:hover {
+    text-decoration: underline;
+  }
+</style>

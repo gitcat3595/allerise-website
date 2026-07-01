@@ -1,6 +1,6 @@
 # Allerise Corporate Website
 
-アレーライズ株式会社コーポレートサイト（[allerise.com](https://allerise.com)）の静的サイト版。
+Allerise Pte. Ltd. コーポレートサイト（[allerise.com](https://allerise.com)）の静的サイト版。
 
 Studio.Design からの移行先。Astro + Cloudflare Pages でホスティング。
 
@@ -39,4 +39,4 @@ npm run dev
 
 ## ライセンス
 
-© Allerise Co. Ltd.
+© Allerise Pte. Ltd.

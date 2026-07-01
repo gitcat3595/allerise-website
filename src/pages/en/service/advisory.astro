@@ -1,0 +1,65 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import ArrowLink from '../../../components/ArrowLink.astro';
+import CtaSection from '../../../components/CtaSection.astro';
+import PageHero from '../../../components/PageHero.astro';
+import ServiceNav from '../../../components/ServiceNav.astro';
+import { getBusinessLine } from '../../../data/business';
+import { getAdvisoryScope } from '../../../data/engagements';
+import { getLocale, localePath } from '../../../i18n/locale';
+import { getSiteMeta, t } from '../../../i18n/ui';
+
+const locale = getLocale(Astro.url);
+const site = getSiteMeta(locale);
+const line = getBusinessLine('advisory', locale)!;
+const advisoryScope = getAdvisoryScope(locale);
+---
+
+<BaseLayout title={`${line.label} | ${site.name}`}>
+  <PageHero
+    label={line.labelEn}
+    title={line.tagline ? `${line.label}（${line.tagline}）` : line.label}
+    image="/images/service-banner.jpg"
+  />
+
+  <section class="section section--white">
+    <div class="container">
+      <ServiceNav locale={locale} />
+      <div class="prose service-detail">
+        <p>{line.summary}</p>
+        <h2>{t('supportAreas', locale)}</h2>
+        <ul>
+          {line.items.map((item) => <li>{item}</li>)}
+        </ul>
+        <p>{t('advisoryIntro', locale)}</p>
+
+        <h2>{advisoryScope.title}</h2>
+        <p>{advisoryScope.description}</p>
+        <ul class="advisory-areas">
+          {advisoryScope.areas.map((area) => <li>{area}</li>)}
+        </ul>
+
+        <ArrowLink href={localePath(locale, '/contact')}>{t('advisoryContact', locale)}</ArrowLink>
+      </div>
+    </div>
+  </section>
+
+  <CtaSection locale={locale} />
+</BaseLayout>
+
+<style>
+  .service-detail h2 {
+    font-size: 1.125rem;
+    color: var(--color-primary);
+    margin-top: 2.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .advisory-areas {
+    margin-bottom: 2rem;
+  }
+
+  .service-detail .arrow-link {
+    margin-top: 2rem;
+  }
+</style>
