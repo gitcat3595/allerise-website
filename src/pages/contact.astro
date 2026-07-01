@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactForm from '../components/ContactForm.astro';
+import { site } from '../data/site';
+---
+
+<BaseLayout title={`お問い合わせ | ${site.name}`}>
+  <div class="page-hero">
+    <div class="container">
+      <p class="section-label">CONTACT</p>
+      <h1>お問い合わせ</h1>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <nav class="breadcrumb">
+        <a href="/">ホーム</a> ・ お問い合わせ
+      </nav>
+      <p class="section-lead" style="margin-bottom: 2rem;">
+        弊社へのお問い合わせは下記よりご入力願いします。お問合せ内容の確認後、担当者よりご連絡させていただきます。返信には数日かかる場合もございますので、あらかじめご了承くださいませ。
+      </p>
+      <ContactForm />
+    </div>
+  </section>
+</BaseLayout>

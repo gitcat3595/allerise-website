@@ -1,0 +1,110 @@
+---
+const categories = [
+  { value: 'service', label: 'サービス内容について' },
+  { value: 'press', label: '取材・プレス関連について' },
+  { value: 'recruitment', label: '採用について' },
+  { value: 'other', label: 'その他' },
+];
+---
+
+<form class="contact-form" id="contact-form" novalidate>
+  <div id="form-message" class="form-message" hidden></div>
+
+  <div class="form-group">
+    <label for="category">お問い合わせ内容<span class="required">*</span></label>
+    <select id="category" name="category" required>
+      <option value="">選択してください</option>
+      {categories.map((c) => (
+        <option value={c.value}>{c.label}</option>
+      ))}
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="company">法人名・団体名<span class="required">*</span></label>
+    <input type="text" id="company" name="company" required />
+  </div>
+
+  <div class="form-group">
+    <label for="name">お名前<span class="required">*</span></label>
+    <input type="text" id="name" name="name" required />
+  </div>
+
+  <div class="form-group">
+    <label for="email">ご連絡先メールアドレス<span class="required">*</span></label>
+    <input type="email" id="email" name="email" required />
+  </div>
+
+  <div class="form-group">
+    <label for="phone">ご連絡先電話番号</label>
+    <input type="tel" id="phone" name="phone" />
+  </div>
+
+  <div class="form-group">
+    <label for="message">お問い合わせ詳細<span class="required">*</span></label>
+    <textarea id="message" name="message" required></textarea>
+  </div>
+
+  <div class="form-group form-checkbox">
+    <input type="checkbox" id="privacy" name="privacy" required />
+    <label for="privacy">
+      <a href="/privacypolicy" target="_blank">個人情報の取扱いに関する同意書</a>を読み、同意しました
+    </label>
+  </div>
+
+  <button type="submit" class="btn btn--primary" id="submit-btn">入力内容を送信</button>
+</form>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const messageEl = document.getElementById('form-message') as HTMLDivElement;
+  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    messageEl.hidden = true;
+
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+
+    if (!data.privacy) {
+      showMessage('個人情報の取扱いに同意してください。', 'error');
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = '送信中...';
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      const result = await res.json();
+
+      if (!res.ok) {
+        throw new Error(result.error || '送信に失敗しました');
+      }
+
+      window.location.href = '/contact/thanks';
+    } catch (err) {
+      showMessage(err instanceof Error ? err.message : '送信に失敗しました', 'error');
+      submitBtn.disabled = false;
+      submitBtn.textContent = '入力内容を送信';
+    }
+  });
+
+  function showMessage(text: string, type: 'error' | 'success') {
+    messageEl.textContent = text;
+    messageEl.className = `form-message form-message--${type}`;
+    messageEl.hidden = false;
+  }
+</script>
+
+<style>
+  .contact-form {
+    max-width: 640px;
+  }
+</style>

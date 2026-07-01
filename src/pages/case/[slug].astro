@@ -1,0 +1,104 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CtaSection from '../../components/CtaSection.astro';
+import { cases, getCase } from '../../data/cases';
+import { site } from '../../data/site';
+
+export function getStaticPaths() {
+  return cases.map((c) => ({ params: { slug: c.slug } }));
+}
+
+const { slug } = Astro.params;
+const caseStudy = getCase(slug!);
+
+if (!caseStudy) {
+  return Astro.redirect('/case');
+}
+---
+
+<BaseLayout title={`${caseStudy.title} | ${site.name}`} description={caseStudy.overview}>
+  <div class="page-hero page-hero--with-image">
+    <img src={caseStudy.image} alt="" class="page-hero__bg" />
+    <div class="container page-hero__content">
+      <span class="tag">{caseStudy.category}</span>
+      <time>{caseStudy.date}</time>
+      <h1>{caseStudy.title}</h1>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container prose">
+      <nav class="breadcrumb">
+        <a href="/">ホーム</a> ・ <a href="/case">実績紹介</a> ・ {caseStudy.title}
+      </nav>
+
+      <h2>対象企業</h2>
+      <p>{caseStudy.client}</p>
+
+      <h2>プロジェクト概要</h2>
+      <p>{caseStudy.overview}</p>
+
+      <h2>支援内容</h2>
+      {caseStudy.support.map((s) => (
+        <div>
+          <h3>{s.title}</h3>
+          <p>{s.body}</p>
+        </div>
+      ))}
+
+      <h2>支援の結果</h2>
+      <p>{caseStudy.result}</p>
+
+      <a href="/case" class="btn btn--outline" style="margin-top: 2rem;">実績紹介一覧に戻る</a>
+    </div>
+  </section>
+
+  <CtaSection />
+</BaseLayout>
+
+<style>
+  .page-hero--with-image {
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+    min-height: 320px;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .page-hero__bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .page-hero__content {
+    position: relative;
+    z-index: 1;
+    padding: 4rem 0 3rem;
+    color: #fff;
+    background: linear-gradient(to top, rgba(10, 22, 40, 0.92), rgba(10, 22, 40, 0.35));
+    width: 100%;
+  }
+
+  .tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 0.5rem;
+  }
+
+  time {
+    display: block;
+    font-size: 0.875rem;
+    opacity: 0.7;
+    margin-bottom: 1rem;
+  }
+
+  .prose h3 {
+    font-size: 1.0625rem;
+    margin-top: 1.5rem;
+  }
+</style>

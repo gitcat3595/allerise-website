@@ -1,0 +1,4 @@
+/contact-thanks /contact/thanks 301
+/contact-1 /contact 301
+/news / 301
+/news/* / 301

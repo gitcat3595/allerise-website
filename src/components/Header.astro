@@ -1,0 +1,169 @@
+---
+import { nav } from '../data/site';
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="header">
+  <div class="container header__inner">
+    <a href="/" class="header__logo">
+      <img src="/images/logo.png" alt="アレーライズ Allerise" class="header__logo-img" width="160" height="48" />
+    </a>
+    <button class="header__toggle" aria-label="メニューを開く" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <nav class="header__nav" aria-label="メインナビゲーション">
+      <ul>
+        {nav.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              class:list={['header__link', { 'is-active': currentPath === item.href }]}
+            >
+              {item.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+    <a href="/contact" class="header__cta btn btn--primary">お問い合わせ</a>
+  </div>
+</header>
+
+<script>
+  const toggle = document.querySelector('.header__toggle');
+  const nav = document.querySelector('.header__nav');
+
+  toggle?.addEventListener('click', () => {
+    const expanded = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!expanded));
+    nav?.classList.toggle('is-open');
+    toggle.classList.toggle('is-open');
+  });
+</script>
+
+<style>
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    height: var(--header-height);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .header__inner {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    gap: 2rem;
+  }
+
+  .header__logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  .header__logo:hover {
+    text-decoration: none;
+  }
+
+  .header__logo-img {
+    height: 36px;
+    width: auto;
+    display: block;
+  }
+
+  .header__nav {
+    margin-left: auto;
+  }
+
+  .header__nav ul {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .header__link {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  .header__link:hover,
+  .header__link.is-active {
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .header__cta {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.875rem;
+    white-space: nowrap;
+  }
+
+  .header__toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    margin-left: auto;
+  }
+
+  .header__toggle span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--color-navy);
+    transition: transform 0.2s;
+  }
+
+  @media (max-width: 900px) {
+    .header__toggle {
+      display: flex;
+    }
+
+    .header__nav {
+      position: fixed;
+      top: var(--header-height);
+      left: 0;
+      right: 0;
+      background: #fff;
+      border-bottom: 1px solid var(--color-border);
+      padding: 1rem;
+      display: none;
+    }
+
+    .header__nav.is-open {
+      display: block;
+    }
+
+    .header__nav ul {
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .header__link {
+      display: block;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .header__cta {
+      display: none;
+    }
+  }
+</style>

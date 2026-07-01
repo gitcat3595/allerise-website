@@ -1,0 +1,112 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaSection from '../components/CtaSection.astro';
+import PersonCard from '../components/PersonCard.astro';
+import { members, partners, values } from '../data/members';
+import { site } from '../data/site';
+---
+
+<BaseLayout title={`会社情報 | ${site.name}`}>
+  <div class="page-hero">
+    <div class="container">
+      <p class="section-label">COMPANY</p>
+      <h1>企業情報</h1>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <p class="section-label">ABOUT US</p>
+      <h2 class="section-title">ビジネスを上昇させるサポートを</h2>
+      <p class="prose">
+        社名のアレーライズ（Allerise)はフランス語の行く（aller）と英語の上昇する（rise）を組み合わせたもので、ビジネスを次のレベルへと引き上げるという思いを込めています。私たちは、戦略的な視点と実行力でサポートし、ビジネスを加速させます。
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <p class="section-label">MISSION</p>
+      <h2 class="section-title">新たな価値を生み出し、広げていく</h2>
+      <p class="prose">
+        ビジネスを通じて世の中に新たな価値を生み出していくこと、New Values to the world をミッションとしています。新規事業によって今までになかった価値を作り、それを拡大していきます。日本発の価値が世界へと広がり、インパクトを与えていく世の中へ。日本企業のビジネス展開をサポートすることによってその価値の拡大を担います。
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <p class="section-label">MEMBERS</p>
+      <h2 class="section-title">メンバー</h2>
+      <div class="people-list" style="margin-top: 2rem;">
+        {members.map((m) => <PersonCard person={m} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <p class="section-label">PARTNERS</p>
+      <h2 class="section-title">パートナー</h2>
+      <div class="people-list" style="margin-top: 2rem;">
+        {partners.map((p) => <PersonCard person={p} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <p class="section-label">OUR VALUES</p>
+      <h2 class="section-title">バリュー</h2>
+      <div class="grid-3" style="margin-top: 2rem;">
+        {values.map((v) => (
+          <article class="card">
+            <h3>{v.title}</h3>
+            <p>{v.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <p class="section-label">COMPANY PROFILE</p>
+      <h2 class="section-title">会社概要</h2>
+      <dl class="profile">
+        <dt>所在地</dt>
+        <dd>シンガポールオフィス：{site.singaporeOffice}</dd>
+        <dt>代表</dt>
+        <dd>{site.representative}</dd>
+        <dt>設立</dt>
+        <dd>{site.founded}</dd>
+      </dl>
+    </div>
+  </section>
+
+  <CtaSection />
+</BaseLayout>
+
+<style>
+  .people-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .profile {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 1rem 2rem;
+    margin-top: 2rem;
+  }
+
+  .profile dt {
+    font-weight: 700;
+    color: var(--color-text-muted);
+  }
+
+  .profile dd {
+    margin: 0;
+  }
+</style>

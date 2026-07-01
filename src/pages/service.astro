@@ -1,0 +1,95 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CaseCard from '../components/CaseCard.astro';
+import CtaSection from '../components/CtaSection.astro';
+import { cases } from '../data/cases';
+import { services } from '../data/services';
+import { site } from '../data/site';
+---
+
+<BaseLayout title={`事業内容 | ${site.name}`}>
+  <div class="page-hero">
+    <div class="container">
+      <p class="section-label">SERVICE</p>
+      <h1>事業内容</h1>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <p class="section-label">OUR BUSINESS</p>
+      <h2 class="section-title">課題解決と成長を支援</h2>
+      <div class="prose">
+        <p>アレーライズは、アジア×新規事業開発を軸に幅広く支援を展開しています。戦略策定や計画だけでなく、実際の事業運営まで行い机上の空論や検討だけで終わらせません。</p>
+        <p>DX領域では、日本だけでなくネパール、ベトナムに拠点を持つパートナー企業と共にシステム開発を行っています。新規事業の検討、実際の戦略策定からPOCの実施だけでなく、システムの開発から保守・運用まで行えることが強みです。</p>
+        <p>スピードの速いアジアでのビジネスを成功させるカギとなる現地のインサイトを得るための強固なネットワークも有しています。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <p class="section-label">OUR SERVICES</p>
+      <h2 class="section-title">サービス一覧</h2>
+      <div class="service-list">
+        {services.map((s) => (
+          <article class="service-item">
+            <p class="section-label">{s.labelEn}</p>
+            <h3>{s.labelJa}</h3>
+            <p>{s.summary}</p>
+            <ul>
+              {s.items.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+            {s.link && (
+              <a href={s.link} class="btn btn--outline">詳しく見る</a>
+            )}
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <p class="section-label">CASES</p>
+      <h2 class="section-title">実績紹介</h2>
+      <div class="grid-3" style="margin-top: 2rem;">
+        {cases.map((c) => <CaseCard caseStudy={c} />)}
+      </div>
+      <a href="/case" class="btn btn--outline" style="margin-top: 2rem;">実績紹介をみる</a>
+    </div>
+  </section>
+
+  <CtaSection />
+</BaseLayout>
+
+<style>
+  .service-list {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    margin-top: 2rem;
+  }
+
+  .service-item {
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .service-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .service-item h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .service-item ul {
+    margin: 1rem 0 1.5rem;
+    padding-left: 1.25rem;
+  }
+</style>

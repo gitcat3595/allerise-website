@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { site } from '../../data/site';
+---
+
+<BaseLayout title={`お問い合わせ完了 | ${site.name}`}>
+  <div class="page-hero">
+    <div class="container">
+      <h1>お問い合わせありがとうございます</h1>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container prose">
+      <p>お問い合わせを受け付けました。内容を確認のうえ、担当者よりご連絡いたします。</p>
+      <p>返信には数日かかる場合がございます。あらかじめご了承ください。</p>
+      <a href="/" class="btn btn--primary" style="margin-top: 1.5rem;">トップページへ戻る</a>
+    </div>
+  </section>
+</BaseLayout>

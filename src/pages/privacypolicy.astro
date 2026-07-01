@@ -1,0 +1,53 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaSection from '../components/CtaSection.astro';
+import { privacyIntro, privacyBody } from '../data/privacy';
+import { site } from '../data/site';
+---
+
+<BaseLayout title={`プライバシーポリシー | ${site.name}`}>
+  <div class="page-hero">
+    <div class="container">
+      <p class="section-label">PRIVACY POLICY</p>
+      <h1>個人情報保護方針</h1>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container prose privacy">
+      <p>{privacyIntro}</p>
+      {privacyBody.split(/\n\n+/).map((block) => {
+        if (block.startsWith('第') && block.includes('条')) {
+          const [title, ...rest] = block.split('\n');
+          return (
+            <div class="privacy-section">
+              <h2>{title}</h2>
+              <p>{rest.join('\n')}</p>
+            </div>
+          );
+        }
+        return <p>{block}</p>;
+      })}
+    </div>
+  </section>
+
+  <CtaSection />
+</BaseLayout>
+
+<style>
+  .privacy h2 {
+    font-size: 1.125rem;
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .privacy-section:first-child h2 {
+    border-top: none;
+    padding-top: 0;
+  }
+
+  .prose {
+    max-width: 800px;
+  }
+</style>

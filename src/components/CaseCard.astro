@@ -1,0 +1,68 @@
+---
+import type { CaseStudy } from '../data/cases';
+
+interface Props {
+  caseStudy: CaseStudy;
+  heading?: 'h2' | 'h3';
+}
+
+const { caseStudy, heading = 'h3' } = Astro.props;
+const TitleTag = heading;
+---
+
+<a href={`/case/${caseStudy.slug}`} class="case-card card card--link">
+  <img src={caseStudy.image} alt="" class="case-card__image" width="800" height="450" loading="lazy" />
+  <div class="case-card__body">
+    <span class="case-card__tag">{caseStudy.category}</span>
+    <time class="case-card__date">{caseStudy.date}</time>
+    <TitleTag class="case-card__title">{caseStudy.title}</TitleTag>
+  </div>
+</a>
+
+<style>
+  .case-card {
+    padding: 0;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: box-shadow 0.2s, transform 0.15s;
+  }
+
+  .case-card:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+    text-decoration: none;
+  }
+
+  .case-card__image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    background: var(--color-bg-alt);
+  }
+
+  .case-card__body {
+    padding: 1.25rem 1.5rem 1.5rem;
+  }
+
+  .case-card__tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    color: var(--color-primary);
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+
+  .case-card__date {
+    display: block;
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    margin-bottom: 0.5rem;
+  }
+
+  .case-card__title {
+    font-size: 1.0625rem;
+    margin: 0;
+    line-height: 1.5;
+  }
+</style>

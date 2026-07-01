@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaSection from '../components/CtaSection.astro';
+import { site } from '../data/site';
+---
+
+<BaseLayout title={`採用情報 | ${site.name}`}>
+  <div class="page-hero">
+    <div class="container">
+      <h1>採用情報</h1>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container prose" style="text-align: center;">
+      <h2>現在準備中</h2>
+      <p>情報がアップデートされ次第ページを公開いたします。今しばらくお待ちください。</p>
+      <p>採用に関するお問い合わせは<a href="/contact">お問い合わせフォーム</a>よりご連絡ください。</p>
+      <a href="/" class="btn btn--primary" style="margin-top: 1.5rem;">トップページへ戻る</a>
+    </div>
+  </section>
+
+  <CtaSection title="お問い合わせ" description="採用に関するご質問はお問い合わせフォームよりお気軽にご連絡ください。" />
+</BaseLayout>
