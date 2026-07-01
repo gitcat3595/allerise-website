@@ -6,7 +6,7 @@ const messages = {
     siteName: 'アレーライズ',
     siteTitle: 'アレーライズ｜新規事業開発・アジア進出・研修',
     siteDescription:
-      'Allerise Pte. Ltd.（アレーライズ）は、新規事業開発、海外進出支援、赤ペン思考整理を核とした研修、アドバイザリー、講演を提供するシンガポール拠点のコンサルティング会社です。',
+      'Allerise Pte. Ltd.（アレーライズ）は、新規事業開発および人材研修事業を提供するシンガポール拠点のコンサルティング会社です。',
     navTop: 'TOP',
     navService: '事業内容',
     navCase: '事例',
@@ -40,7 +40,7 @@ const messages = {
     aboutLabel: 'ABOUT US',
     aboutTitle: '戦略と実行力で、ビジネスと人の成長を支援',
     aboutLead:
-      'Allerise Pte. Ltd.（アレーライズ）は、新規事業開発・海外進出支援に加え、赤ペン思考整理を核とした研修・アドバイザリー・講演を提供するシンガポール拠点のコンサルティング会社です。',
+      'Allerise Pte. Ltd.（アレーライズ）は、新規事業開発および人材研修事業を提供するシンガポール拠点のコンサルティング会社です。',
     servicesLabel: 'SERVICES',
     servicesTitle: '事業内容',
     servicesLead: '新規事業から海外進出、研修・講演まで、組織と個人の成長を支援します。',
@@ -98,7 +98,7 @@ const messages = {
     siteName: 'Allerise',
     siteTitle: 'Allerise | New Business, Asia Expansion & Training',
     siteDescription:
-      'Allerise Pte. Ltd. is a Singapore-based consulting firm offering new business development, overseas expansion support, REDPEN thinking workshops, advisory, and speaking engagements.',
+      'Allerise Pte. Ltd. is a Singapore-based consulting firm offering new business development and talent development programs.',
     navTop: 'TOP',
     navService: 'Services',
     navCase: 'Cases',
@@ -132,7 +132,7 @@ const messages = {
     aboutLabel: 'ABOUT US',
     aboutTitle: 'Supporting business and people with strategy and execution',
     aboutLead:
-      'Allerise Pte. Ltd. is a Singapore-based consulting firm offering new business development, overseas expansion support, REDPEN thinking workshops, advisory, and speaking engagements.',
+      'Allerise Pte. Ltd. is a Singapore-based consulting firm offering new business development and talent development programs.',
     servicesLabel: 'SERVICES',
     servicesTitle: 'Services',
     servicesLead:

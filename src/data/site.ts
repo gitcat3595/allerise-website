@@ -2,7 +2,7 @@ export const site = {
   name: 'アレーライズ',
   title: 'アレーライズ｜新規事業開発・アジア進出・研修',
   description:
-    'Allerise Pte. Ltd.（アレーライズ）は、新規事業開発、海外進出支援、赤ペン思考整理を核とした研修、アドバイザリー、講演を提供するシンガポール拠点のコンサルティング会社です。',
+    'Allerise Pte. Ltd.（アレーライズ）は、新規事業開発および人材研修事業を提供するシンガポール拠点のコンサルティング会社です。',
   url: 'https://allerise.com',
   email: 'contact@allerise.com',
   company: 'Allerise Pte. Ltd.',
