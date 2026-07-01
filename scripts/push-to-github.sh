@@ -63,5 +63,7 @@ if [[ "$HTTP_CODE" != "201" && "$HTTP_CODE" != "422" ]]; then
   exit 1
 fi
 
+git remote set-url origin "https://x-access-token:${TOKEN}@github.com/${REPO_OWNER}/${REPO_NAME}.git"
 git push -u origin main
+git remote set-url origin "$REMOTE"
 echo "Done: https://github.com/${REPO_OWNER}/${REPO_NAME}"
