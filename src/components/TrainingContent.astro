@@ -1,0 +1,584 @@
+---
+import ArrowLink from './ArrowLink.astro';
+import ServiceNav from './ServiceNav.astro';
+import { getTrainingContent } from '../data/training';
+import type { Locale } from '../i18n/locale';
+import { localePath } from '../i18n/locale';
+import { t } from '../i18n/ui';
+
+interface Props {
+  locale?: Locale;
+}
+
+const locale = Astro.props.locale ?? 'ja';
+const c = getTrainingContent(locale);
+const contactPath = localePath(locale, '/contact');
+---
+
+<section class="t-hero">
+  <div class="container t-hero__grid">
+    <div>
+      <p class="t-eyebrow">{c.heroLabel}</p>
+      <h1 class="t-hero__title">{c.heroTitle}</h1>
+      <p class="t-hero__lead">{c.heroLead}</p>
+    </div>
+    <aside class="t-panel">
+      <p class="t-panel__kicker">{c.panelKicker}</p>
+      <p class="t-panel__title">{c.panelTitle}</p>
+      <p class="t-panel__body">{c.panelBody}</p>
+      <div class="t-metrics">
+        {c.metrics.map((m) => (
+          <div>
+            <b>{m.value}</b>
+            <span>{m.label}</span>
+          </div>
+        ))}
+      </div>
+    </aside>
+  </div>
+  <div class="container">
+    <img class="t-hero__image" src="/images/hero-alignment.jpg" alt="" width="1640" height="924" loading="eager" />
+  </div>
+</section>
+
+<section class="section section--white">
+  <div class="container">
+    <ServiceNav locale={locale} />
+    <p class="t-label">{c.issuesLabel}</p>
+    <h2 class="section-title">{c.issuesTitle}</h2>
+    <p class="section-lead">{c.issuesLead}</p>
+    <div class="t-grid t-grid--3">
+      {c.issues.map((issue) => (
+        <article class="t-cell">
+          <p class="t-no">{issue.no}</p>
+          <h3>{issue.title}</h3>
+          <p class="t-body">{issue.body}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="section" id="types">
+  <div class="container">
+    <p class="t-label">{c.typesLabel}</p>
+    <h2 class="section-title">{c.typesTitle}</h2>
+    <p class="section-lead">{c.typesLead}</p>
+    <div class="t-grid t-grid--4">
+      {c.types.map((type, i) => (
+        <article class:list={['t-cell', 't-cell--type', { 't-cell--featured': i === 0 }]}>
+          <span class="t-tag">{type.tag}</span>
+          <h3>{type.title}</h3>
+          <p class="t-body">{type.body}</p>
+          <a class="t-more" href={`#${type.anchor}`}>{t('viewDetails', locale)}　→</a>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="section section--white" id="manager">
+  <div class="container t-flow">
+    <div class="t-flow__intro">
+      <p class="t-label">{c.managerLabel}</p>
+      <h2 class="section-title">{c.managerTitle}</h2>
+      <p class="section-lead">{c.managerLead}</p>
+    </div>
+    <div class="t-flow__list">
+      {c.managerSteps.map((step) => (
+        <article class="t-flow__item">
+          <b>{step.step}</b>
+          <div>
+            <h3>{step.title}</h3>
+            <p>{step.body}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+  <div class="container">
+    <div class="t-timeline">
+      <h3>{c.timelineTitle}</h3>
+      <div class="t-timeline__grid">
+        {c.timeline.map((item) => (
+          <div>
+            <b>{item.period}</b>
+            <span>{item.body}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+    <div class="t-note t-note--plain">
+      <p>{c.assessmentNote}</p>
+      <a class="t-more" href="https://lifealignment.net" target="_blank" rel="noopener">
+        {c.assessmentLinkLabel}　→
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="business">
+  <div class="container">
+    <p class="t-label">{c.businessLabel}</p>
+    <h2 class="section-title">{c.businessTitle}</h2>
+    <div class="t-approach">
+      {c.businessApproach.map((item) => (
+        <article>
+          <b>{item.no}</b>
+          <h3>{item.title}</h3>
+          <p>{item.body}</p>
+        </article>
+      ))}
+    </div>
+    <div class="t-note">
+      <h3>{c.businessNoteTitle}</h3>
+      <p>{c.businessNoteBody}</p>
+    </div>
+
+    <div class="t-method">
+      <div>
+        <p class="t-label">{c.methodLabel}</p>
+        <h3 class="t-method__title">{c.methodTitle}</h3>
+        <p class="t-body">{c.methodBody}</p>
+      </div>
+      <div>
+        <h3 class="t-method__title">{c.methodForTitle}</h3>
+        <ul class="t-method__list">
+          {c.methodFor.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--white" id="career">
+  <div class="container">
+    <p class="t-label">{c.careerLabel}</p>
+    <h2 class="section-title">{c.careerTitle}</h2>
+    <p class="section-lead">{c.careerLead}</p>
+    <div class="t-grid t-grid--3">
+      {c.careerOutcomes.map((item) => (
+        <article class="t-cell">
+          <p class="t-no">{item.no}</p>
+          <h3>{item.title}</h3>
+          <p class="t-body">{item.body}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <p class="t-label">{c.principlesLabel}</p>
+    <h2 class="section-title">{c.principlesTitle}</h2>
+    <div class="t-note">
+      <h3>{c.principleNoteTitle}</h3>
+      <p>{c.principleNoteBody}</p>
+    </div>
+    <div style="margin-top: 2.5rem;">
+      <ArrowLink href={contactPath}>{t('trainingContact', locale)}</ArrowLink>
+    </div>
+  </div>
+</section>
+
+<style>
+  .t-eyebrow,
+  .t-label {
+    font-family: var(--font-en);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--color-primary);
+    margin: 0 0 0.75rem;
+  }
+
+  /* Hero */
+  .t-hero {
+    margin-top: var(--header-height);
+    padding: 3rem 0 0;
+    background: var(--color-bg);
+  }
+
+  .t-hero__grid {
+    display: grid;
+    grid-template-columns: 1.16fr 0.84fr;
+    gap: 3.5rem;
+    align-items: end;
+    padding-bottom: 3rem;
+  }
+
+  .t-hero__title {
+    font-size: clamp(2rem, 4.2vw, 3.25rem);
+    font-weight: 700;
+    line-height: 1.35;
+    margin: 0 0 1.25rem;
+  }
+
+  .t-hero__lead {
+    max-width: 700px;
+    color: var(--color-text-muted);
+    font-size: 1.0625rem;
+    line-height: 2;
+    margin: 0;
+  }
+
+  .t-panel {
+    background: var(--color-primary);
+    color: #fff;
+    padding: 2.25rem;
+  }
+
+  .t-panel__kicker {
+    font-family: var(--font-en);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    color: #c9d2ff;
+    margin: 0;
+  }
+
+  .t-panel__title {
+    font-size: 1.45rem;
+    font-weight: 700;
+    line-height: 1.55;
+    margin: 0.75rem 0;
+  }
+
+  .t-panel__body {
+    font-size: 0.9rem;
+    line-height: 1.9;
+    margin: 0;
+    color: #dbe1ff;
+  }
+
+  .t-metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 1.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.4);
+  }
+
+  .t-metrics b {
+    display: block;
+    font-family: var(--font-en);
+    font-size: 1.6rem;
+  }
+
+  .t-metrics span {
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    color: #dbe1ff;
+  }
+
+  .t-hero__image {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+  }
+
+  /* Cell grids */
+  .t-grid {
+    display: grid;
+    gap: 1px;
+    margin-top: 2.5rem;
+    background: var(--color-border);
+    border: 1px solid var(--color-border);
+  }
+
+  .t-grid--3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .t-grid--4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .t-cell {
+    background: var(--color-bg-white);
+    padding: 2rem;
+  }
+
+  .t-cell--type {
+    display: flex;
+    flex-direction: column;
+    min-height: 290px;
+  }
+
+  .t-cell--featured {
+    background: #edf2ff;
+  }
+
+  .t-no {
+    font-family: var(--font-en);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--color-primary);
+    margin: 0;
+  }
+
+  .t-cell h3 {
+    font-size: 1.15rem;
+    line-height: 1.55;
+    margin: 0.6rem 0;
+  }
+
+  .t-body {
+    font-size: 0.9rem;
+    line-height: 1.85;
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  .t-tag {
+    display: inline-block;
+    align-self: flex-start;
+    border: 1px solid var(--color-primary);
+    color: var(--color-primary);
+    font-family: var(--font-en);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    padding: 0.2rem 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .t-more {
+    display: inline-block;
+    margin-top: auto;
+    padding-top: 1rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--color-primary);
+  }
+
+  .t-more:hover {
+    text-decoration: underline;
+  }
+
+  /* Manager flow */
+  .t-flow {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .t-flow__intro {
+    position: sticky;
+    top: calc(var(--header-height) + 1.5rem);
+  }
+
+  .t-flow__list {
+    border-top: 1px solid var(--color-border);
+  }
+
+  .t-flow__item {
+    display: grid;
+    grid-template-columns: 125px 1fr;
+    gap: 1.5rem;
+    padding: 1.6rem 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .t-flow__item b {
+    font-family: var(--font-en);
+    font-size: 0.8rem;
+    letter-spacing: 0.04em;
+    color: var(--color-primary);
+  }
+
+  .t-flow__item h3 {
+    font-size: 1.15rem;
+    margin: 0 0 0.35rem;
+  }
+
+  .t-flow__item p {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  .t-timeline {
+    background: #1a2744;
+    color: #fff;
+    padding: 2.25rem;
+    margin-top: 2.5rem;
+  }
+
+  .t-timeline h3 {
+    font-size: 1.25rem;
+    margin: 0;
+  }
+
+  .t-timeline__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-top: 1.4rem;
+  }
+
+  .t-timeline__grid div {
+    border-left: 1px solid rgba(255, 255, 255, 0.4);
+    padding-left: 1rem;
+  }
+
+  .t-timeline__grid b {
+    display: block;
+    font-family: var(--font-en);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+  }
+
+  .t-timeline__grid span {
+    display: block;
+    margin-top: 0.4rem;
+    font-size: 0.875rem;
+    line-height: 1.65;
+  }
+
+  /* Approach columns */
+  .t-approach {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin-top: 2.5rem;
+    border: 1px solid var(--color-border);
+  }
+
+  .t-approach article {
+    padding: 1.65rem;
+    border-right: 1px solid var(--color-border);
+    background: var(--color-bg-white);
+  }
+
+  .t-approach article:last-child {
+    border-right: none;
+  }
+
+  .t-approach b {
+    font-family: var(--font-en);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    color: var(--color-primary);
+  }
+
+  .t-approach h3 {
+    font-size: 1.05rem;
+    line-height: 1.5;
+    margin: 0.7rem 0;
+  }
+
+  .t-approach p {
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: 0.86rem;
+    line-height: 1.75;
+  }
+
+  /* Note */
+  .t-note {
+    border-left: 4px solid var(--color-primary);
+    padding: 1.4rem 0 1.4rem 1.8rem;
+    max-width: 840px;
+    margin-top: 2.5rem;
+  }
+
+  .t-note h3 {
+    font-size: 1.15rem;
+    margin: 0 0 0.5rem;
+  }
+
+  .t-note p {
+    font-size: 0.9375rem;
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  .t-note--plain {
+    border-left-color: var(--color-border);
+  }
+
+  /* Method */
+  .t-method {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 3rem;
+    margin-top: 3rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .t-method__title {
+    font-size: 1.15rem;
+    margin: 0 0 0.75rem;
+  }
+
+  .t-method__list {
+    margin: 0;
+    padding-left: 1.25rem;
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    line-height: 1.85;
+  }
+
+  .t-method__list li {
+    margin-bottom: 0.4rem;
+  }
+
+  @media (max-width: 900px) {
+    .t-hero__grid,
+    .t-flow {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .t-grid--3,
+    .t-grid--4,
+    .t-approach,
+    .t-method {
+      grid-template-columns: 1fr;
+    }
+
+    .t-method {
+      gap: 2rem;
+    }
+
+    .t-approach article {
+      border-right: none;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .t-approach article:last-child {
+      border-bottom: none;
+    }
+
+    .t-cell--type {
+      min-height: 0;
+    }
+
+    .t-flow__intro {
+      position: static;
+    }
+
+    .t-timeline__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .t-hero__image {
+      height: 160px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .t-flow__item {
+      grid-template-columns: 1fr;
+      gap: 0.35rem;
+    }
+
+    .t-timeline__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

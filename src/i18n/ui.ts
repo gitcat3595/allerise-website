@@ -4,10 +4,13 @@ import { localePath } from './locale';
 const messages = {
   ja: {
     siteName: 'アレーライズ',
-    siteTitle: 'アレーライズ｜新規事業開発・アジア進出・研修',
+    siteTitle: 'アレーライズ｜新規事業と人の可能性を、前へ',
     siteDescription:
-      'Allerise Pte. Ltd.（アレーライズ）は、新規事業開発および人材研修事業を提供するシンガポール拠点のコンサルティング会社です。',
+      'Allerise Pte. Ltd.（アレーライズ）はシンガポール拠点のコンサルティング会社です。アジア・海外を軸とした新規事業開発、法人向けの研修・組織開発、個人向けのディスカッションパートナーの3領域で、事業と人の成長に伴走します。',
     navTop: 'TOP',
+    navBusiness: '新規事業開発',
+    navTraining: '法人研修',
+    navIndividual: '個人向け',
     navService: '事業内容',
     navCase: '事例',
     navContact: 'お問い合わせ',
@@ -37,17 +40,17 @@ const messages = {
       'チームのビジョンに共感し、共に前進できる仲間を探しています。一緒に働いてみませんか？',
     heroTitle: 'アジア×新規事業\n日本から世界へ価値をひろげる',
     heroSubtitle: 'NEW VALUES TO THE WORLD',
-    aboutLabel: 'ABOUT US',
-    aboutTitle: '戦略と実行力で、ビジネスと人の成長を支援',
+    aboutLabel: 'ABOUT ALLERISE',
+    aboutTitle: '人の成長と、事業の前進をつなぐ。',
     aboutLead:
-      'Allerise Pte. Ltd.（アレーライズ）は、新規事業開発および人材研修事業を提供するシンガポール拠点のコンサルティング会社です。',
+      'アレーライズはシンガポールを拠点に、人と組織が持つ可能性を実行につなげる支援を行っています。多様な背景や価値観を持つ人たちが、目的に向かって協働できる組織づくりに取り組みます。',
     servicesLabel: 'SERVICES',
     servicesTitle: '事業内容',
-    servicesLead: '新規事業から海外進出、研修・講演まで、組織と個人の成長を支援します。',
+    servicesLead: '新規事業開発、法人向け研修・組織開発、個人向けプログラムの3領域。加えてアドバイザリー、海外進出支援、講演を提供します。',
     casesLabel: 'CASES',
     casesLead: 'アジアをはじめとする、アレーライズのご支援事例をご紹介します',
     serviceIndexLead:
-      'アレーライズは、新規事業開発から海外進出、研修・アドバイザリー、講演まで、組織と個人の成長を支援するサービスを提供しています。',
+      'アレーライズは、新規事業開発・法人研修・個人向けプログラムの3領域を軸に、アドバイザリー、海外進出支援、講演まで、事業と人の成長を支援するサービスを提供しています。',
     serviceNavAll: '一覧',
     serviceNavLabel: '事業内容メニュー',
     supportAreas: '支援領域',
@@ -63,6 +66,7 @@ const messages = {
       '企業・団体の人材育成プログラムやアクセラレーターにおいて、新規事業開発を中心としたメンタリングを担当しています。',
     panelists: '登壇者',
     speakingContact: '講演・メンタリングのご依頼・お問い合わせ',
+    trainingContact: 'プログラムのご相談・お問い合わせ',
     advisoryContact: 'アドバイザリーのご相談',
     advisoryIntro:
       '経営会議への参加、定期的な壁打ち、プロジェクト単位の伴走など、ご依頼内容とフェーズに応じて関与の形を設計します。人材育成・新規事業・海外進出のいずれか、または複数領域にまたがるご相談にも対応します。',
@@ -96,10 +100,13 @@ const messages = {
   },
   en: {
     siteName: 'Allerise',
-    siteTitle: 'Allerise | New Business, Asia Expansion & Training',
+    siteTitle: 'Allerise | New Business, Organizations, People',
     siteDescription:
-      'Allerise Pte. Ltd. is a Singapore-based consulting firm offering new business development and talent development programs.',
+      'Allerise Pte. Ltd. is a Singapore-based consulting firm working across three areas: new business development with Asia at the centre, corporate training and organizational development, and a discussion-partner programme for individuals.',
     navTop: 'TOP',
+    navBusiness: 'New Business',
+    navTraining: 'Training',
+    navIndividual: 'Individuals',
     navService: 'Services',
     navCase: 'Cases',
     navContact: 'Contact',
@@ -129,18 +136,18 @@ const messages = {
       'We are looking for people who share our vision and want to move forward with us.',
     heroTitle: 'Asia × New Business\nSpreading value from Japan to the world',
     heroSubtitle: 'NEW VALUES TO THE WORLD',
-    aboutLabel: 'ABOUT US',
-    aboutTitle: 'Supporting business and people with strategy and execution',
+    aboutLabel: 'ABOUT ALLERISE',
+    aboutTitle: 'Connecting personal growth with business progress.',
     aboutLead:
-      'Allerise Pte. Ltd. is a Singapore-based consulting firm offering new business development and talent development programs.',
+      'Based in Singapore, Allerise helps people and organizations turn their potential into execution — building organizations where people of different backgrounds and values can work toward a shared purpose.',
     servicesLabel: 'SERVICES',
     servicesTitle: 'Services',
     servicesLead:
-      'From new business to overseas expansion, training, and speaking — we support organizational and personal growth.',
+      'Three areas — new business development, corporate training and organizational development, and a programme for individuals — plus advisory, overseas expansion, and speaking.',
     casesLabel: 'CASES',
     casesLead: 'Selected examples of our work across Asia and beyond',
     serviceIndexLead:
-      'Allerise provides services from new business development and overseas expansion to training, advisory, and speaking.',
+      'Allerise works across three areas — new business development, corporate training, and a programme for individuals — extending to advisory, overseas expansion, and speaking.',
     serviceNavAll: 'Overview',
     serviceNavLabel: 'Services menu',
     supportAreas: 'Areas of support',
@@ -156,6 +163,7 @@ const messages = {
       'We mentor participants in corporate talent programs and accelerators, with a focus on new business development.',
     panelists: 'Speakers',
     speakingContact: 'Inquire about speaking or mentoring',
+    trainingContact: 'Discuss a training programme',
     advisoryContact: 'Discuss advisory support',
     advisoryIntro:
       'From board-level input to regular sparring sessions and project-based support, we shape our involvement around your needs and stage. We handle talent development, new business, and overseas expansion — individually or in combination.',
@@ -221,6 +229,9 @@ export function getNav(locale: Locale) {
   const m = messages[locale];
   return [
     { href: localePath(locale, '/'), label: m.navTop },
+    { href: localePath(locale, '/service/new-business-development'), label: m.navBusiness },
+    { href: localePath(locale, '/service/training'), label: m.navTraining },
+    { href: localePath(locale, '/service/individual'), label: m.navIndividual },
     { href: localePath(locale, '/service'), label: m.navService },
     { href: localePath(locale, '/case'), label: m.navCase },
     { href: localePath(locale, '/contact'), label: m.navContact },
@@ -230,19 +241,21 @@ export function getNav(locale: Locale) {
 export function getServiceNav(locale: Locale) {
   const labels =
     locale === 'ja'
-      ? ['新規事業開発', '海外進出支援', '研修事業', 'アドバイザリー', '講演']
+      ? ['新規事業開発', '法人研修・組織開発', '個人向けプログラム', 'アドバイザリー', '海外進出支援', '講演']
       : [
           'New Business',
-          'Overseas Expansion',
-          'Training',
+          'Training & Development',
+          'For Individuals',
           'Advisory',
+          'Overseas Expansion',
           'Speaking',
         ];
   const slugs = [
     'new-business-development',
-    'overseas-expansion',
     'training',
+    'individual',
     'advisory',
+    'overseas-expansion',
     'speaking',
   ];
   return slugs.map((slug, i) => ({

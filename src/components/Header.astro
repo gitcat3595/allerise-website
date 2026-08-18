@@ -11,7 +11,10 @@ interface Props {
 const locale = Astro.props.locale ?? 'ja';
 const nav = getNav(locale);
 const currentPath = Astro.url.pathname;
-const isServiceSection = currentPath.includes('/service');
+const normalize = (path: string) => (path.length > 1 ? path.replace(/\/$/, '') : path);
+const current = normalize(currentPath);
+const isTrainingPage = current.endsWith('/service/training');
+const isServiceSection = current.includes('/service') && !isTrainingPage;
 const langHref = alternateLocalePath(currentPath);
 ---
 
@@ -34,12 +37,13 @@ const langHref = alternateLocalePath(currentPath);
               class:list={[
                 'header__link',
                 {
-                  'is-active':
-                    item.href.endsWith('/service')
+                  'is-active': item.href.endsWith('/service/training')
+                    ? isTrainingPage
+                    : item.href.endsWith('/service')
                       ? isServiceSection
                       : item.href.endsWith('/case')
-                        ? currentPath.includes('/case')
-                        : currentPath === item.href,
+                        ? current.includes('/case')
+                        : current === normalize(item.href),
                 },
               ]}
             >

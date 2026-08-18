@@ -46,44 +46,6 @@ const serviceExtras: Record<string, Record<Locale, ServiceExtra>> = {
       links: [{ href: '/en/contact', label: 'Contact us' }],
     },
   },
-  training: {
-    ja: {
-      sections: [
-        {
-          title: '赤ペン思考整理とは',
-          body: '赤ペンを用いて思考を書き出し、構造化するメソッドです。頭の中にある曖昧な考えを可視化し、優先順位を明確にしたうえで、具体的な行動につなげます。ジャーナリング（感情の記録）ではなく、思考の整理と意思決定支援を目的とした法人向けプログラムです。',
-        },
-        {
-          title: 'こんな課題におすすめです',
-          items: [
-            '新規事業の検討が進まない、議論が抽象的なまま終わる',
-            '管理職・リーダー層の意思決定スピードを上げたい',
-            'チームの思考を揃え、実行に移す文化をつくりたい',
-            'キャリアや事業の方向性に迷いがある個人・メンバーへの支援',
-          ],
-        },
-      ],
-      links: [{ href: '/contact', label: '研修・講演のお問い合わせ' }],
-    },
-    en: {
-      sections: [
-        {
-          title: 'What is REDPEN thinking?',
-          body: 'A method for writing out and structuring thoughts with a red pen — turning vague ideas into visible priorities and concrete action. It is designed for organizational decision-making, not emotional journaling.',
-        },
-        {
-          title: 'Recommended for teams facing',
-          items: [
-            'Stalled new business discussions that stay abstract',
-            'Leaders who need faster, clearer decisions',
-            'Teams that want a culture of aligned thinking and execution',
-            'Individuals unsure about career or business direction',
-          ],
-        },
-      ],
-      links: [{ href: '/en/contact', label: 'Inquire about training or speaking' }],
-    },
-  },
   'overseas-expansion': {
     ja: {
       sections: [

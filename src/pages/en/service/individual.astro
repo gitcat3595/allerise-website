@@ -1,19 +1,22 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import CtaSection from '../../../components/CtaSection.astro';
-import TrainingContent from '../../../components/TrainingContent.astro';
+import IndividualContent from '../../../components/IndividualContent.astro';
 import { getBusinessLine } from '../../../data/business';
-import { getTrainingContent } from '../../../data/training';
+import { getIndividualContent } from '../../../data/individual';
 import { getLocale } from '../../../i18n/locale';
 import { getSiteMeta } from '../../../i18n/ui';
 
 const locale = getLocale(Astro.url);
-const line = getBusinessLine('training', locale)!;
-const training = getTrainingContent(locale);
+const line = getBusinessLine('individual', locale)!;
+const individual = getIndividualContent(locale);
 const site = getSiteMeta(locale);
 ---
 
-<BaseLayout title={`${line.label} | ${site.name}`} description={training.heroLead}>
-  <TrainingContent locale={locale} />
+<BaseLayout
+  title={`${line.label} — ${line.tagline} | ${site.name}`}
+  description={individual.heroLead}
+>
+  <IndividualContent locale={locale} />
   <CtaSection locale={locale} />
 </BaseLayout>

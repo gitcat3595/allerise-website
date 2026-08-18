@@ -1,0 +1,425 @@
+---
+import ArrowLink from './ArrowLink.astro';
+import ServiceNav from './ServiceNav.astro';
+import { getIndividualContent } from '../data/individual';
+import type { Locale } from '../i18n/locale';
+import { localePath } from '../i18n/locale';
+
+interface Props {
+  locale?: Locale;
+}
+
+const locale = Astro.props.locale ?? 'ja';
+const c = getIndividualContent(locale);
+const contactPath = localePath(locale, '/contact');
+---
+
+<section class="i-hero">
+  <div class="container i-hero__grid">
+    <div>
+      <p class="i-eyebrow">{c.heroLabel}</p>
+      <h1 class="i-hero__title">{c.heroTitle}</h1>
+      <p class="i-hero__lead">{c.heroLead}</p>
+    </div>
+    <aside class="i-panel">
+      <p class="i-panel__kicker">{c.panelKicker}</p>
+      <p class="i-panel__title">{c.panelTitle}</p>
+      <p class="i-panel__body">{c.panelBody}</p>
+      <div class="i-metrics">
+        {c.metrics.map((m) => (
+          <div>
+            <b>{m.value}</b>
+            <span>{m.label}</span>
+          </div>
+        ))}
+      </div>
+    </aside>
+  </div>
+</section>
+
+<section class="section section--white">
+  <div class="container">
+    <ServiceNav locale={locale} />
+    <p class="i-label">{c.notLabel}</p>
+    <h2 class="section-title">{c.notTitle}</h2>
+    <p class="section-lead">{c.notLead}</p>
+    <div class="i-grid">
+      {c.notCards.map((card) => (
+        <article class="i-cell">
+          <p class="i-no">{card.no}</p>
+          <h3>{card.title}</h3>
+          <p class="i-body">{card.body}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container i-split">
+    <div>
+      <p class="i-label">{c.forLabel}</p>
+      <h2 class="section-title">{c.forTitle}</h2>
+    </div>
+    <ul class="i-list">
+      {c.forItems.map((item) => <li>{item}</li>)}
+    </ul>
+  </div>
+</section>
+
+<section class="section section--white">
+  <div class="container i-flow">
+    <div class="i-flow__intro">
+      <p class="i-label">{c.sessionLabel}</p>
+      <h2 class="section-title">{c.sessionTitle}</h2>
+      <p class="section-lead">{c.sessionLead}</p>
+    </div>
+    <div class="i-flow__list">
+      {c.sessionSteps.map((step) => (
+        <article class="i-flow__item">
+          <b>{step.step}</b>
+          <div>
+            <h3>{step.title}</h3>
+            <p>{step.body}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="section" id="price">
+  <div class="container">
+    <p class="i-label">{c.priceLabel}</p>
+    <h2 class="section-title">{c.priceTitle}</h2>
+    <div class="i-price">
+      <header class="i-price__head">
+        <p class="i-price__name">{c.priceName}</p>
+        <p class="i-price__amount">
+          {c.priceAmount}<span>{c.priceUnit}</span>
+        </p>
+        <p class="i-price__total">{c.priceTotalNote}</p>
+      </header>
+      <div class="i-price__body">
+        <ul>
+          {c.priceIncludes.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+    </div>
+    <p class="i-fine">{c.priceNote}</p>
+  </div>
+</section>
+
+<section class="section section--white">
+  <div class="container">
+    <div class="i-closing">
+      <h2 class="section-title">{c.closingTitle}</h2>
+      <p class="section-lead">{c.closingBody}</p>
+      <div style="margin-top: 2rem;">
+        <ArrowLink href={contactPath}>{c.contactLabel}</ArrowLink>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .i-eyebrow,
+  .i-label {
+    font-family: var(--font-en);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--color-primary);
+    margin: 0 0 0.75rem;
+  }
+
+  .i-hero {
+    margin-top: var(--header-height);
+    padding: 3rem 0 0;
+    background: var(--color-bg);
+  }
+
+  .i-hero__grid {
+    display: grid;
+    grid-template-columns: 1.16fr 0.84fr;
+    gap: 3.5rem;
+    align-items: end;
+    padding-bottom: 3.5rem;
+  }
+
+  .i-hero__title {
+    font-size: clamp(2rem, 4.2vw, 3.25rem);
+    font-weight: 700;
+    line-height: 1.35;
+    margin: 0 0 1.25rem;
+  }
+
+  .i-hero__lead {
+    max-width: 700px;
+    color: var(--color-text-muted);
+    font-size: 1.0625rem;
+    line-height: 2;
+    margin: 0;
+  }
+
+  .i-panel {
+    background: var(--color-primary);
+    color: #fff;
+    padding: 2.25rem;
+  }
+
+  .i-panel__kicker {
+    font-family: var(--font-en);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    color: #c9d2ff;
+    margin: 0;
+  }
+
+  .i-panel__title {
+    font-size: 1.35rem;
+    font-weight: 700;
+    line-height: 1.6;
+    margin: 0.75rem 0;
+  }
+
+  .i-panel__body {
+    font-size: 0.9rem;
+    line-height: 1.9;
+    margin: 0;
+    color: #dbe1ff;
+  }
+
+  .i-metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 1.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.4);
+  }
+
+  .i-metrics b {
+    display: block;
+    font-family: var(--font-en);
+    font-size: 1.6rem;
+  }
+
+  .i-metrics span {
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    color: #dbe1ff;
+  }
+
+  .i-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    margin-top: 2.5rem;
+    background: var(--color-border);
+    border: 1px solid var(--color-border);
+  }
+
+  .i-cell {
+    background: var(--color-bg-white);
+    padding: 2rem;
+  }
+
+  .i-no {
+    font-family: var(--font-en);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--color-primary);
+    margin: 0;
+  }
+
+  .i-cell h3 {
+    font-size: 1.15rem;
+    line-height: 1.55;
+    margin: 0.6rem 0;
+  }
+
+  .i-body {
+    font-size: 0.9rem;
+    line-height: 1.85;
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  .i-split {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .i-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .i-list li {
+    padding: 1rem 0 1rem 2rem;
+    border-bottom: 1px solid var(--color-border);
+    color: var(--color-text-muted);
+    position: relative;
+  }
+
+  .i-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 1.65rem;
+    width: 12px;
+    height: 2px;
+    background: var(--color-primary);
+  }
+
+  .i-flow {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .i-flow__intro {
+    position: sticky;
+    top: calc(var(--header-height) + 1.5rem);
+  }
+
+  .i-flow__list {
+    border-top: 1px solid var(--color-border);
+  }
+
+  .i-flow__item {
+    display: grid;
+    grid-template-columns: 125px 1fr;
+    gap: 1.5rem;
+    padding: 1.6rem 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .i-flow__item b {
+    font-family: var(--font-en);
+    font-size: 0.8rem;
+    letter-spacing: 0.04em;
+    color: var(--color-primary);
+  }
+
+  .i-flow__item h3 {
+    font-size: 1.15rem;
+    margin: 0 0 0.35rem;
+  }
+
+  .i-flow__item p {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  .i-price {
+    margin-top: 2.5rem;
+    border: 1px solid var(--color-primary);
+    background: var(--color-bg-white);
+    max-width: 900px;
+  }
+
+  .i-price__head {
+    padding: 2rem 2.25rem;
+    background: var(--color-primary);
+    color: #fff;
+  }
+
+  .i-price__name {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem;
+  }
+
+  .i-price__amount {
+    font-family: var(--font-en);
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  .i-price__amount span {
+    font-family: var(--font-ja);
+    font-size: 0.9375rem;
+    font-weight: 400;
+    margin-left: 0.5rem;
+  }
+
+  .i-price__total {
+    font-size: 0.875rem;
+    margin: 0.75rem 0 0;
+    color: #dbe1ff;
+  }
+
+  .i-price__body {
+    padding: 2rem 2.25rem;
+  }
+
+  .i-price__body ul {
+    margin: 0;
+    padding-left: 1.25rem;
+    columns: 2;
+    column-gap: 2.5rem;
+  }
+
+  .i-price__body li {
+    margin-bottom: 0.6rem;
+    color: var(--color-text-muted);
+    font-size: 0.9375rem;
+    break-inside: avoid;
+  }
+
+  .i-fine {
+    max-width: 900px;
+    margin: 1.5rem 0 0;
+    font-size: 0.8125rem;
+    line-height: 1.85;
+    color: var(--color-text-muted);
+  }
+
+  .i-closing {
+    max-width: 760px;
+  }
+
+  @media (max-width: 900px) {
+    .i-hero__grid,
+    .i-split,
+    .i-flow {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .i-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .i-flow__intro {
+      position: static;
+    }
+
+    .i-price__body ul {
+      columns: 1;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .i-flow__item {
+      grid-template-columns: 1fr;
+      gap: 0.35rem;
+    }
+
+    .i-price__head,
+    .i-price__body {
+      padding: 1.5rem 1.25rem;
+    }
+  }
+</style>

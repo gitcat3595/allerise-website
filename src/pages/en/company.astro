@@ -45,16 +45,6 @@ const values = getValues(locale);
 
   <section class="section">
     <div class="container">
-      <h2 class="section-label">PARTNERS</h2>
-      <h3 class="section-title">{t('partners', locale)}</h3>
-      <div class="people-list">
-        {partners.map((p) => <PersonCard person={p} />)}
-      </div>
-    </div>
-  </section>
-
-  <section class="section section--white">
-    <div class="container">
       <h2 class="section-label">OUR VALUES</h2>
       <h3 class="section-title">{t('values', locale)}</h3>
       <div class="values-grid">
@@ -68,7 +58,7 @@ const values = getValues(locale);
     </div>
   </section>
 
-  <section class="section">
+  <section class="section section--white">
     <div class="container">
       <h2 class="section-label">COMPANY PROFILE</h2>
       <h3 class="section-title">{t('companyProfile', locale)}</h3>
@@ -94,12 +84,36 @@ const values = getValues(locale);
     </div>
   </section>
 
+  <section class="section partners">
+    <div class="container">
+      <h2 class="section-label section-label--sub">PARTNERS</h2>
+      <h3 class="section-title section-title--sub">{t('partners', locale)}</h3>
+      <div class="people-list">
+        {partners.map((p) => <PersonCard person={p} />)}
+      </div>
+    </div>
+  </section>
+
   <CtaSection locale={locale} />
 </BaseLayout>
 
 <style>
   .people-list {
     margin-top: 1rem;
+  }
+
+  /* Partners sit below the company profile as supporting information. */
+  .partners {
+    padding-top: 3rem;
+  }
+
+  .section-label--sub {
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
+  }
+
+  .section-title--sub {
+    font-size: 1.125rem;
+    font-weight: 700;
   }
 
   .values-grid {

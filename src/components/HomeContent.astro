@@ -1,0 +1,520 @@
+---
+import ArrowLink from './ArrowLink.astro';
+import BusinessBlock from './BusinessBlock.astro';
+import CaseCard from './CaseCard.astro';
+import CtaSection from './CtaSection.astro';
+import { getPrimaryBusinessLines, getSecondaryBusinessLines } from '../data/business';
+import { getCases } from '../data/cases';
+import type { Locale } from '../i18n/locale';
+import { localePath } from '../i18n/locale';
+import { getHomeContent } from '../i18n/home';
+import { t } from '../i18n/ui';
+
+interface Props {
+  locale?: Locale;
+}
+
+const locale = Astro.props.locale ?? 'ja';
+const home = getHomeContent(locale);
+const primaryLines = getPrimaryBusinessLines(locale);
+const secondaryLines = getSecondaryBusinessLines(locale);
+const cases = getCases(locale);
+---
+
+<section class="hero">
+  <div class="container hero__grid">
+    <div class="hero__copy">
+      <p class="eyebrow">{home.heroEyebrow}</p>
+      <h1 class="hero__title">
+        {home.heroTitle}<em>{home.heroTitleAccent}</em>{home.heroTitleRest}<br />{home.heroTitleLine2}
+      </h1>
+      <p class="hero__lead">{home.heroCopy}</p>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href={localePath(locale, '/contact')}>{home.heroPrimaryCta}</a>
+        <a class="hero__text-link" href="#services">{home.heroSecondaryCta}　→</a>
+      </div>
+    </div>
+    <figure class="hero__photo">
+      <img
+        src="/images/hero-alignment.jpg"
+        alt=""
+        width="1640"
+        height="924"
+        loading="eager"
+      />
+      <figcaption class="hero__tag">{home.heroTag}</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container belief">
+    <div>
+      <p class="label">{home.beliefLabel}</p>
+      <h2 class="section-title">{home.beliefTitle}</h2>
+    </div>
+    <div>
+      <p class="belief__copy">{home.beliefCopy}</p>
+      <p class="belief__statement">{home.beliefStatement}</p>
+    </div>
+  </div>
+</section>
+
+<section class="section section--white" id="services">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <p class="label">{home.pillarsLabel}</p>
+        <h2 class="section-title">{home.pillarsTitle}</h2>
+        <p class="section-lead">{home.pillarsLead}</p>
+      </div>
+    </div>
+    <div class="pillars">
+      {primaryLines.map((line, i) => (
+        <article class="pillar">
+          <p class="pillar__num">{String(i + 1).padStart(2, '0')} / {line.labelEn}</p>
+          <p class="pillar__audience">{line.audience}</p>
+          <h3 class="pillar__title">{line.label}</h3>
+          {line.tagline && <p class="pillar__tagline">{line.tagline}</p>}
+          <p class="pillar__body">{line.summary}</p>
+          <ul class="pillar__list">
+            {line.items.slice(0, 4).map((item) => <li>{item}</li>)}
+          </ul>
+          <a class="pillar__link" href={localePath(locale, `/service/${line.slug}`)}>
+            {home.pillarMore}　→
+          </a>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="section approach">
+  <div class="container approach__grid">
+    <div>
+      <p class="label label--inverse">{home.approachLabel}</p>
+      <h2 class="approach__title">{home.approachTitle}</h2>
+    </div>
+    <div class="approach__list">
+      {home.approach.map((item) => (
+        <article class="approach__item">
+          <b>{item.num}</b>
+          <div>
+            <h3>{item.title}</h3>
+            <p>{item.body}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <p class="label">{home.perspectiveLabel}</p>
+    <h2 class="section-title">{home.perspectiveTitle}</h2>
+    <div class="places">
+      {home.perspectivePlaces.map((place) => (
+        <figure class="place">
+          <img src={place.image} alt={place.alt} width="1000" height="563" loading="lazy" />
+          <figcaption>{place.label}</figcaption>
+        </figure>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="section section--white">
+  <div class="container">
+    <p class="label">{home.otherLabel}</p>
+    <h2 class="section-title">{home.otherTitle}</h2>
+    <p class="section-lead">{home.otherLead}</p>
+    <div style="margin-top: 2rem;">
+      {secondaryLines.map((line) => (
+        <BusinessBlock line={line} locale={locale} />
+      ))}
+    </div>
+    <div style="margin-top: 1rem;">
+      <ArrowLink href={localePath(locale, '/service')}>{t('viewServices', locale)}</ArrowLink>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="section-label">{t('casesLabel', locale)}</h2>
+    <p class="section-lead">{t('casesLead', locale)}</p>
+    <div class="grid-3" style="margin-top: 2.5rem;">
+      {cases.map((c) => <CaseCard caseStudy={c} locale={locale} />)}
+    </div>
+    <div style="margin-top: 2rem;">
+      <ArrowLink href={localePath(locale, '/case')}>{t('viewCases', locale)}</ArrowLink>
+    </div>
+  </div>
+</section>
+
+<section class="section section--white" id="about">
+  <div class="container split-section">
+    <img
+      src="/images/about-alignment.jpg"
+      alt=""
+      class="split-section__image"
+      width="1200"
+      height="676"
+      loading="lazy"
+    />
+    <div>
+      <p class="label">{t('aboutLabel', locale)}</p>
+      <h2 class="section-title">{t('aboutTitle', locale)}</h2>
+      <p class="section-lead">{t('aboutLead', locale)}</p>
+      <ArrowLink href={localePath(locale, '/company')}>{t('viewCompany', locale)}</ArrowLink>
+    </div>
+  </div>
+</section>
+
+<CtaSection locale={locale} />
+
+<style>
+  .eyebrow,
+  .label {
+    font-family: var(--font-en);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--color-primary);
+    margin-bottom: 0.75rem;
+  }
+
+  .label--inverse {
+    color: #aebcff;
+  }
+
+  /* Hero */
+  .hero {
+    margin-top: var(--header-height);
+    padding: 3rem 0 0;
+    background: var(--color-bg-white);
+  }
+
+  .hero__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.92fr);
+    gap: 4rem;
+    align-items: center;
+    padding-bottom: 3.5rem;
+  }
+
+  .hero__title {
+    font-size: clamp(2.25rem, 4.2vw, 3.75rem);
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    margin: 0 0 1.25rem;
+  }
+
+  .hero__title em {
+    font-style: normal;
+    color: var(--color-primary);
+  }
+
+  .hero__lead {
+    max-width: 620px;
+    color: var(--color-text-muted);
+    font-size: 1.0625rem;
+    line-height: 2;
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 1.5rem;
+    align-items: center;
+    margin-top: 1.75rem;
+  }
+
+  .hero__text-link {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: var(--color-primary);
+  }
+
+  .hero__text-link:hover {
+    text-decoration: underline;
+  }
+
+  .hero__photo {
+    position: relative;
+    margin: 0;
+    height: 440px;
+    overflow: hidden;
+  }
+
+  .hero__photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hero__tag {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding: 0.875rem 1.125rem;
+    background: var(--color-bg-white);
+    color: var(--color-primary);
+    font-family: var(--font-en);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+  }
+
+  /* Belief */
+  .belief {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 4.5rem;
+  }
+
+  .belief__copy {
+    color: var(--color-text-muted);
+    line-height: 2;
+    max-width: 640px;
+  }
+
+  .belief__statement {
+    margin: 2rem 0 0;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border);
+    font-size: 1.0625rem;
+    font-weight: 700;
+    line-height: 1.85;
+  }
+
+  /* Three pillars */
+  .section-head {
+    margin-bottom: 2.5rem;
+  }
+
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: 1px solid var(--color-border);
+    border-left: 1px solid var(--color-border);
+  }
+
+  .pillar {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 1.75rem 1.75rem;
+    border-right: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .pillar__num {
+    font-family: var(--font-en);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--color-primary);
+    margin: 0;
+  }
+
+  .pillar__audience {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: var(--color-text-muted);
+    margin: 1.25rem 0 0.35rem;
+  }
+
+  .pillar__title {
+    font-size: 1.3rem;
+    line-height: 1.5;
+    margin: 0 0 0.5rem;
+  }
+
+  .pillar__tagline {
+    font-size: 0.8125rem;
+    color: var(--color-primary);
+    font-weight: 700;
+    margin: 0 0 0.9rem;
+  }
+
+  .pillar__body {
+    font-size: 0.9rem;
+    line-height: 1.9;
+    color: var(--color-text-muted);
+    margin: 0 0 1.1rem;
+  }
+
+  .pillar__list {
+    margin: 0 0 1rem;
+    padding-left: 1.1rem;
+    font-size: 0.85rem;
+    line-height: 1.8;
+    color: var(--color-text-muted);
+  }
+
+  .pillar__list li {
+    margin-bottom: 0.3rem;
+  }
+
+  .pillar__link {
+    margin-top: auto;
+    padding-top: 1.25rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--color-primary);
+  }
+
+  .pillar__link:hover {
+    text-decoration: underline;
+  }
+
+  /* Approach */
+  .approach {
+    background: var(--color-primary);
+    color: #fff;
+  }
+
+  .approach__grid {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 4.5rem;
+  }
+
+  .approach__title {
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    font-weight: 700;
+    max-width: 430px;
+    margin: 0;
+  }
+
+  .approach__list {
+    border-top: 1px solid rgba(255, 255, 255, 0.34);
+  }
+
+  .approach__item {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 1.5rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.34);
+  }
+
+  .approach__item b {
+    font-family: var(--font-en);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    color: #c9d2ff;
+  }
+
+  .approach__item h3 {
+    font-size: 1.1rem;
+    margin: 0 0 0.35rem;
+  }
+
+  .approach__item p {
+    font-size: 0.9rem;
+    line-height: 1.85;
+    color: #dbe1ff;
+    margin: 0;
+  }
+
+  /* Perspective */
+  .places {
+    display: grid;
+    grid-template-columns: 1.45fr 0.72fr 0.72fr;
+    gap: 0.875rem;
+    margin-top: 2.5rem;
+  }
+
+  .place {
+    position: relative;
+    height: 380px;
+    margin: 0;
+    overflow: hidden;
+    background: var(--color-border);
+  }
+
+  .place img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.45s ease;
+  }
+
+  .place:hover img {
+    transform: scale(1.04);
+  }
+
+  .place::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(0deg, rgba(8, 20, 44, 0.58), transparent 55%);
+  }
+
+  .place figcaption {
+    position: absolute;
+    z-index: 1;
+    left: 1.25rem;
+    bottom: 1rem;
+    color: #fff;
+    font-family: var(--font-en);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+  }
+
+  @media (max-width: 900px) {
+    .hero__grid,
+    .belief,
+    .approach__grid {
+      grid-template-columns: 1fr;
+      gap: 2.25rem;
+    }
+
+    .hero__photo {
+      height: 320px;
+    }
+
+    .pillars {
+      grid-template-columns: 1fr;
+    }
+
+    .places {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .place:first-child {
+      grid-column: span 2;
+    }
+
+    .place {
+      height: 260px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .hero__title {
+      font-size: 2.1rem;
+    }
+
+    .hero__photo {
+      height: 250px;
+    }
+
+    .places {
+      grid-template-columns: 1fr;
+    }
+
+    .place:first-child {
+      grid-column: span 1;
+    }
+
+    .approach__item {
+      grid-template-columns: 1fr;
+      gap: 0.35rem;
+    }
+  }
+</style>
