@@ -9,7 +9,6 @@ export interface HomeContent {
   heroCopy: string;
   heroPrimaryCta: string;
   heroSecondaryCta: string;
-  heroTag: string;
 
   pillarsLabel: string;
   pillarsTitle: string;
@@ -23,7 +22,7 @@ export interface HomeContent {
 
   perspectiveLabel: string;
   perspectiveTitle: string;
-  perspectivePlaces: { image: string; alt: string; label: string }[];
+  perspectivePlaces: { image: string; alt: string }[];
 
   approachLabel: string;
   approachTitle: string;
@@ -45,7 +44,6 @@ const content: Record<Locale, HomeContent> = {
       'アレーライズは、コンサルティングおよび研修を通じて企業や個人の成長を支えます。新規事業開発や海外進出のサポートから、組織や社員の育成まで。',
     heroPrimaryCta: 'ご相談・お問い合わせ',
     heroSecondaryCta: '事業内容を見る',
-    heroTag: 'SINGAPORE / ASIA',
 
     pillarsLabel: 'WHAT WE DO',
     pillarsTitle: '3つの柱で、企業と個人の成長を支える。',
@@ -81,13 +79,11 @@ const content: Record<Locale, HomeContent> = {
       {
         image: '/images/perspective-singapore-marinabay.jpg',
         alt: 'シンガポールのマリーナベイ',
-        label: 'SINGAPORE',
       },
-      { image: '/images/perspective-vietnam-bike.jpg', alt: 'ベトナムの街並み', label: 'VIETNAM' },
+      { image: '/images/perspective-vietnam-bike.jpg', alt: 'ベトナムの街並み' },
       {
         image: '/images/perspective-seoul-skyscraper.jpg',
         alt: '韓国・ソウルの都市風景',
-        label: 'KOREA',
       },
     ],
 
@@ -132,7 +128,6 @@ const content: Record<Locale, HomeContent> = {
       'Allerise supports the growth of companies and individuals through consulting and training — from new ventures and overseas expansion to developing organizations and their people.',
     heroPrimaryCta: 'Talk to us',
     heroSecondaryCta: 'See what we do',
-    heroTag: 'SINGAPORE / ASIA',
 
     pillarsLabel: 'WHAT WE DO',
     pillarsTitle: 'Three pillars supporting companies and people.',
@@ -168,13 +163,11 @@ const content: Record<Locale, HomeContent> = {
       {
         image: '/images/perspective-singapore-marinabay.jpg',
         alt: 'Marina Bay, Singapore',
-        label: 'SINGAPORE',
       },
-      { image: '/images/perspective-vietnam-bike.jpg', alt: 'A street in Vietnam', label: 'VIETNAM' },
+      { image: '/images/perspective-vietnam-bike.jpg', alt: 'A street in Vietnam' },
       {
         image: '/images/perspective-seoul-skyscraper.jpg',
         alt: 'Seoul skyline, Korea',
-        label: 'KOREA',
       },
     ],
 

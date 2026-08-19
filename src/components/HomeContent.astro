@@ -41,7 +41,6 @@ const cases = getCases(locale);
         height="924"
         loading="eager"
       />
-      <figcaption class="hero__tag">{home.heroTag}</figcaption>
     </figure>
   </div>
 </section>
@@ -100,7 +99,6 @@ const cases = getCases(locale);
       {home.perspectivePlaces.map((place) => (
         <figure class="place">
           <img src={place.image} alt={place.alt} width="1000" height="563" loading="lazy" />
-          <figcaption>{place.label}</figcaption>
         </figure>
       ))}
     </div>
@@ -246,19 +244,6 @@ const cases = getCases(locale);
     width: 100%;
     height: 100%;
     object-fit: cover;
-  }
-
-  .hero__tag {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    padding: 0.875rem 1.125rem;
-    background: var(--color-bg-white);
-    color: var(--color-primary);
-    font-family: var(--font-en);
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
   }
 
   /* Three pillars */
@@ -434,18 +419,6 @@ const cases = getCases(locale);
     position: absolute;
     inset: 0;
     background: linear-gradient(0deg, rgba(8, 20, 44, 0.58), transparent 55%);
-  }
-
-  .place figcaption {
-    position: absolute;
-    z-index: 1;
-    left: 1.25rem;
-    bottom: 1rem;
-    color: #fff;
-    font-family: var(--font-en);
-    font-size: 0.78rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
   }
 
   @media (max-width: 900px) {
