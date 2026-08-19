@@ -19,7 +19,12 @@ export interface HomeContent {
   pillarsLabel: string;
   pillarsTitle: string;
   pillarsLead: string;
-  pillarMore: string;
+  pillars: {
+    num: string;
+    title: string;
+    body: string;
+    links: { label: string; path: string }[];
+  }[];
 
   perspectiveLabel: string;
   perspectiveTitle: string;
@@ -36,13 +41,13 @@ export interface HomeContent {
 
 const content: Record<Locale, HomeContent> = {
   ja: {
-    heroEyebrow: 'SINGAPORE / ASIA',
-    heroTitle: '事業も、人も、',
-    heroTitleAccent: '止まっている場所',
-    heroTitleRest: 'がある。',
-    heroTitleLine2: 'そこから、動かす。',
+    heroEyebrow: 'NEW VALUES TO THE WORLD',
+    heroTitle: '新しい価値を',
+    heroTitleAccent: '世界',
+    heroTitleRest: 'へ',
+    heroTitleLine2: 'とどける',
     heroCopy:
-      'アレーライズは、アジアを軸とした新規事業開発、法人向けの研修・組織開発、そして個人向けの対話プログラム。3つの領域で、事業と人が次に進むところまで伴走します。',
+      'アレーライズは、コンサルティングおよび研修を通じて企業や個人の成長を支えます。新規事業開発や海外進出のサポートから、組織や社員の育成まで。',
     heroPrimaryCta: 'ご相談・お問い合わせ',
     heroSecondaryCta: '事業内容を見る',
     heroTag: 'SINGAPORE / ASIA',
@@ -55,10 +60,32 @@ const content: Record<Locale, HomeContent> = {
       '机上の戦略で終わらせない。「分かる」を「自分で動ける」に変えるところまでを、仕事の範囲とします。',
 
     pillarsLabel: 'WHAT WE DO',
-    pillarsTitle: '3つの領域で、次の一歩をつくる。',
+    pillarsTitle: '3つの柱で、企業と個人の成長を支える。',
     pillarsLead:
-      '事業をつくる、組織を変える、人が動き出す。対象は違っても、やっていることは同じです。止まっている場所を特定し、構造にして、実際に動くところまで一緒に進みます。',
-    pillarMore: '詳しく見る',
+      '事業開発、研修、アドバイザリー。対象は違っても、机上の議論で終わらせず、実際に動くところまで伴走するという姿勢は変わりません。',
+    pillars: [
+      {
+        num: '01',
+        title: '事業開発',
+        body: 'シンガポールを拠点に、アジア・海外を軸とした新規事業開発を支援します。市場リサーチと現地調査から、戦略策定、POC、現地オペレーションの立ち上げまで。アクセラレータープログラムや社内新規事業制度でのメンタリングも担っています。',
+        links: [{ label: 'コンサルティング事業を見る', path: '/service/new-business-development' }],
+      },
+      {
+        num: '02',
+        title: '研修',
+        body: '法人向けは、集合セッションと個別メンタリングを組み合わせたプログラム。組織変革、リーダー育成、女性のキャリア支援、福利厚生としての導入まで対応します。個人向けは、5ヶ月間の対話プログラムです。独自アセスメント「ライフアライメント」で現在地を可視化します。',
+        links: [
+          { label: '法人向け研修', path: '/service/training' },
+          { label: '個人向け研修', path: '/service/individual' },
+        ],
+      },
+      {
+        num: '03',
+        title: 'アドバイザリー',
+        body: '経営層・事業責任者に対し、新規事業、海外展開、人材育成の各領域で継続的に伴走します。経営会議への参加、定期的な壁打ち、プロジェクト単位の関与など、必要な度合いに応じて設計します。',
+        links: [{ label: 'アドバイザリーを見る', path: '/service/advisory' }],
+      },
+    ],
 
     perspectiveLabel: 'PERSPECTIVE',
     perspectiveTitle: '違いを越え、前に進むための視点を。',
@@ -108,13 +135,13 @@ const content: Record<Locale, HomeContent> = {
   },
 
   en: {
-    heroEyebrow: 'SINGAPORE / ASIA',
-    heroTitle: 'Every business, and every person, has a place where things have ',
-    heroTitleAccent: 'stopped moving',
-    heroTitleRest: '.',
-    heroTitleLine2: 'That is where we start.',
+    heroEyebrow: 'NEW VALUES TO THE WORLD',
+    heroTitle: 'Delivering new value ',
+    heroTitleAccent: 'to the world',
+    heroTitleRest: '',
+    heroTitleLine2: '',
     heroCopy:
-      'Allerise works across three areas — new business development with Asia at the centre, corporate training and organizational development, and a dialogue programme for individuals — staying with you until things actually move.',
+      'Allerise supports the growth of companies and individuals through consulting and training — from new ventures and overseas expansion to developing organizations and their people.',
     heroPrimaryCta: 'Talk to us',
     heroSecondaryCta: 'See what we do',
     heroTag: 'SINGAPORE / ASIA',
@@ -127,10 +154,32 @@ const content: Record<Locale, HomeContent> = {
       'We do not stop at the deck. Turning “I understand” into “I can act on my own” is part of the job.',
 
     pillarsLabel: 'WHAT WE DO',
-    pillarsTitle: 'Three areas, one next step.',
+    pillarsTitle: 'Three pillars supporting companies and people.',
     pillarsLead:
-      'Build the business, change the organization, get the person moving. The audience differs; the work is the same — find where things have stopped, give it a structure, and stay until it moves.',
-    pillarMore: 'View details',
+      'Business development, training, and advisory. The audience differs, but the stance does not: we do not stop at the discussion, we stay until things move.',
+    pillars: [
+      {
+        num: '01',
+        title: 'Business Development',
+        body: 'From our base in Singapore we build new businesses with Asia at the centre — market and on-the-ground research, strategy, proof of concept, and standing up local operations. We also mentor in accelerator programmes and corporate venture schemes.',
+        links: [{ label: 'View consulting', path: '/service/new-business-development' }],
+      },
+      {
+        num: '02',
+        title: 'Training',
+        body: 'For companies, group sessions paired with one-to-one mentoring — organizational change, leadership development, career support for women, and delivery as an employee benefit. For individuals, a five-month dialogue programme. Our Life Alignment assessment maps where you are now.',
+        links: [
+          { label: 'Corporate training', path: '/service/training' },
+          { label: 'For individuals', path: '/service/individual' },
+        ],
+      },
+      {
+        num: '03',
+        title: 'Advisory',
+        body: 'Ongoing support for executives and business leaders across new business, overseas expansion, and talent development — from a seat in management meetings to regular sparring and project-based involvement.',
+        links: [{ label: 'View advisory', path: '/service/advisory' }],
+      },
+    ],
 
     perspectiveLabel: 'PERSPECTIVE',
     perspectiveTitle: 'Perspective that moves teams across difference.',

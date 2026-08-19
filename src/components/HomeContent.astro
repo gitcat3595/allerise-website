@@ -3,7 +3,7 @@ import ArrowLink from './ArrowLink.astro';
 import BusinessBlock from './BusinessBlock.astro';
 import CaseCard from './CaseCard.astro';
 import CtaSection from './CtaSection.astro';
-import { getPrimaryBusinessLines, getSecondaryBusinessLines } from '../data/business';
+import { getSecondaryBusinessLines } from '../data/business';
 import { getCases } from '../data/cases';
 import type { Locale } from '../i18n/locale';
 import { localePath } from '../i18n/locale';
@@ -16,7 +16,6 @@ interface Props {
 
 const locale = Astro.props.locale ?? 'ja';
 const home = getHomeContent(locale);
-const primaryLines = getPrimaryBusinessLines(locale);
 const secondaryLines = getSecondaryBusinessLines(locale);
 const cases = getCases(locale);
 ---
@@ -70,19 +69,16 @@ const cases = getCases(locale);
       </div>
     </div>
     <div class="pillars">
-      {primaryLines.map((line, i) => (
+      {home.pillars.map((pillar) => (
         <article class="pillar">
-          <p class="pillar__num">{String(i + 1).padStart(2, '0')} / {line.labelEn}</p>
-          <p class="pillar__audience">{line.audience}</p>
-          <h3 class="pillar__title">{line.label}</h3>
-          {line.tagline && <p class="pillar__tagline">{line.tagline}</p>}
-          <p class="pillar__body">{line.summary}</p>
-          <ul class="pillar__list">
-            {line.items.slice(0, 4).map((item) => <li>{item}</li>)}
-          </ul>
-          <a class="pillar__link" href={localePath(locale, `/service/${line.slug}`)}>
-            {home.pillarMore}　→
-          </a>
+          <p class="pillar__num">{pillar.num}</p>
+          <h3 class="pillar__title">{pillar.title}</h3>
+          <p class="pillar__body">{pillar.body}</p>
+          <div class="pillar__links">
+            {pillar.links.map((link) => (
+              <a href={localePath(locale, link.path)}>{link.label}　→</a>
+            ))}
+          </div>
         </article>
       ))}
     </div>
@@ -165,8 +161,7 @@ const cases = getCases(locale);
     />
     <div>
       <p class="label">{t('aboutLabel', locale)}</p>
-      <h2 class="section-title">{t('aboutTitle', locale)}</h2>
-      <p class="section-lead">{t('aboutLead', locale)}</p>
+      <p class="about-body">{t('aboutLead', locale)}</p>
       <ArrowLink href={localePath(locale, '/company')}>{t('viewCompany', locale)}</ArrowLink>
     </div>
   </div>
@@ -312,30 +307,16 @@ const cases = getCases(locale);
 
   .pillar__num {
     font-family: var(--font-en);
-    font-size: 0.7rem;
+    font-size: 1.5rem;
     font-weight: 700;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.04em;
     color: var(--color-primary);
-    margin: 0;
-  }
-
-  .pillar__audience {
-    font-size: 0.8125rem;
-    font-weight: 700;
-    color: var(--color-text-muted);
-    margin: 1.25rem 0 0.35rem;
+    margin: 0 0 1rem;
   }
 
   .pillar__title {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     line-height: 1.5;
-    margin: 0 0 0.5rem;
-  }
-
-  .pillar__tagline {
-    font-size: 0.8125rem;
-    color: var(--color-primary);
-    font-weight: 700;
     margin: 0 0 0.9rem;
   }
 
@@ -346,28 +327,29 @@ const cases = getCases(locale);
     margin: 0 0 1.1rem;
   }
 
-  .pillar__list {
-    margin: 0 0 1rem;
-    padding-left: 1.1rem;
-    font-size: 0.85rem;
-    line-height: 1.8;
-    color: var(--color-text-muted);
-  }
-
-  .pillar__list li {
-    margin-bottom: 0.3rem;
-  }
-
-  .pillar__link {
+  .pillar__links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
     margin-top: auto;
     padding-top: 1.25rem;
+  }
+
+  .pillar__links a {
     font-size: 0.85rem;
     font-weight: 700;
     color: var(--color-primary);
   }
 
-  .pillar__link:hover {
+  .pillar__links a:hover {
     text-decoration: underline;
+  }
+
+  .about-body {
+    max-width: 620px;
+    color: var(--color-text-muted);
+    line-height: 2;
+    margin: 0 0 1.5rem;
   }
 
   /* Approach */

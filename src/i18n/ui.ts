@@ -4,15 +4,16 @@ import { localePath } from './locale';
 const messages = {
   ja: {
     siteName: 'アレーライズ',
-    siteTitle: 'アレーライズ｜新規事業と人の可能性を、前へ',
+    siteTitle: 'アレーライズ｜新しい価値を世界へとどける',
     siteDescription:
-      'Allerise Pte. Ltd.（アレーライズ）はシンガポール拠点のコンサルティング会社です。アジア・海外を軸とした新規事業開発、法人向けの研修・組織開発、個人向けのディスカッションパートナーの3領域で、事業と人の成長に伴走します。',
-    navTop: 'TOP',
-    navBusiness: '新規事業開発',
-    navTraining: '法人研修',
-    navIndividual: '個人向け',
+      'Allerise Pte. Ltd.（アレーライズ）は、コンサルティングおよび研修を通じて企業や個人の成長を支えるシンガポール拠点の会社です。事業開発、研修（法人向け・個人向け）、アドバイザリーの3つの柱で支援しています。',
+    navTop: 'ホーム',
+    navBusiness: 'コンサルティング事業',
+    navTraining: '法人向け研修',
+    navIndividual: '個人向け研修',
     navService: '事業内容',
-    navCase: '事例',
+    navCase: '実績紹介',
+    navCompany: '会社案内',
     navContact: 'お問い合わせ',
     langSwitch: 'English',
     menuOpen: 'メニューを開く',
@@ -38,19 +39,17 @@ const messages = {
     ctaCareersTitle: '採用について',
     ctaCareersText:
       'チームのビジョンに共感し、共に前進できる仲間を探しています。一緒に働いてみませんか？',
-    heroTitle: 'アジア×新規事業\n日本から世界へ価値をひろげる',
-    heroSubtitle: 'NEW VALUES TO THE WORLD',
-    aboutLabel: 'ABOUT ALLERISE',
-    aboutTitle: '人の成長と、事業の前進をつなぐ。',
+    aboutLabel: 'ABOUT US',
+    aboutTitle: '',
     aboutLead:
-      'アレーライズはシンガポールを拠点に、人と組織が持つ可能性を実行につなげる支援を行っています。多様な背景や価値観を持つ人たちが、目的に向かって協働できる組織づくりに取り組みます。',
+      'アレーライズは、コンサルティングおよび研修を通じて企業や個人の成長を支えます。新規事業開発や海外進出におけるビジネスのサポート、オペレーション運営、組織や社員の育成を行なっています。',
     servicesLabel: 'SERVICES',
     servicesTitle: '事業内容',
-    servicesLead: '新規事業開発、法人向け研修・組織開発、個人向けプログラムの3領域。加えてアドバイザリー、海外進出支援、講演を提供します。',
+    servicesLead: '事業開発、研修（法人向け・個人向け）、アドバイザリーの3つの柱で、企業と個人の成長を支援します。',
     casesLabel: 'CASES',
     casesLead: 'アジアをはじめとする、アレーライズのご支援事例をご紹介します',
     serviceIndexLead:
-      'アレーライズは、新規事業開発・法人研修・個人向けプログラムの3領域を軸に、アドバイザリー、海外進出支援、講演まで、事業と人の成長を支援するサービスを提供しています。',
+      'アレーライズは、事業開発、研修（法人向け・個人向け）、アドバイザリーの3つの柱を軸に、海外進出支援や講演まで、企業と個人の成長を支援するサービスを提供しています。',
     serviceNavAll: '一覧',
     serviceNavLabel: '事業内容メニュー',
     supportAreas: '支援領域',
@@ -100,15 +99,16 @@ const messages = {
   },
   en: {
     siteName: 'Allerise',
-    siteTitle: 'Allerise | New Business, Organizations, People',
+    siteTitle: 'Allerise | New Values to the World',
     siteDescription:
-      'Allerise Pte. Ltd. is a Singapore-based consulting firm working across three areas: new business development with Asia at the centre, corporate training and organizational development, and a discussion-partner programme for individuals.',
-    navTop: 'TOP',
-    navBusiness: 'New Business',
-    navTraining: 'Training',
-    navIndividual: 'Individuals',
+      'Allerise Pte. Ltd. is a Singapore-based firm supporting the growth of companies and individuals through consulting and training, across three pillars: business development, training, and advisory.',
+    navTop: 'Home',
+    navBusiness: 'Consulting',
+    navTraining: 'Corporate Training',
+    navIndividual: 'For Individuals',
     navService: 'Services',
-    navCase: 'Cases',
+    navCase: 'Our Work',
+    navCompany: 'Company',
     navContact: 'Contact',
     langSwitch: '日本語',
     menuOpen: 'Open menu',
@@ -134,20 +134,18 @@ const messages = {
     ctaCareersTitle: 'Careers',
     ctaCareersText:
       'We are looking for people who share our vision and want to move forward with us.',
-    heroTitle: 'Asia × New Business\nSpreading value from Japan to the world',
-    heroSubtitle: 'NEW VALUES TO THE WORLD',
-    aboutLabel: 'ABOUT ALLERISE',
-    aboutTitle: 'Connecting personal growth with business progress.',
+    aboutLabel: 'ABOUT US',
+    aboutTitle: '',
     aboutLead:
-      'Based in Singapore, Allerise helps people and organizations turn their potential into execution — building organizations where people of different backgrounds and values can work toward a shared purpose.',
+      'Allerise supports the growth of companies and individuals through consulting and training — business support for new ventures and overseas expansion, operational management, and the development of organizations and their people.',
     servicesLabel: 'SERVICES',
     servicesTitle: 'Services',
     servicesLead:
-      'Three areas — new business development, corporate training and organizational development, and a programme for individuals — plus advisory, overseas expansion, and speaking.',
+      'Three pillars — business development, training for companies and individuals, and advisory — supporting the growth of organizations and people.',
     casesLabel: 'CASES',
     casesLead: 'Selected examples of our work across Asia and beyond',
     serviceIndexLead:
-      'Allerise works across three areas — new business development, corporate training, and a programme for individuals — extending to advisory, overseas expansion, and speaking.',
+      'Allerise works across three pillars — business development, training for companies and individuals, and advisory — extending to overseas expansion and speaking.',
     serviceNavAll: 'Overview',
     serviceNavLabel: 'Services menu',
     supportAreas: 'Areas of support',
@@ -232,8 +230,8 @@ export function getNav(locale: Locale) {
     { href: localePath(locale, '/service/new-business-development'), label: m.navBusiness },
     { href: localePath(locale, '/service/training'), label: m.navTraining },
     { href: localePath(locale, '/service/individual'), label: m.navIndividual },
-    { href: localePath(locale, '/service'), label: m.navService },
     { href: localePath(locale, '/case'), label: m.navCase },
+    { href: localePath(locale, '/company'), label: m.navCompany },
     { href: localePath(locale, '/contact'), label: m.navContact },
   ];
 }
@@ -241,10 +239,10 @@ export function getNav(locale: Locale) {
 export function getServiceNav(locale: Locale) {
   const labels =
     locale === 'ja'
-      ? ['新規事業開発', '法人研修・組織開発', '個人向けプログラム', 'アドバイザリー', '海外進出支援', '講演']
+      ? ['事業開発', '法人向け研修', '個人向け研修', 'アドバイザリー', '海外進出支援', '講演']
       : [
-          'New Business',
-          'Training & Development',
+          'Business Development',
+          'Corporate Training',
           'For Individuals',
           'Advisory',
           'Overseas Expansion',

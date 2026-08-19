@@ -50,7 +50,7 @@ const businessLineRecords: BusinessLineRecord[] = [
     tier: 'primary',
     audienceEn: 'FOR BUSINESS',
     ja: {
-      label: '新規事業開発・アジア展開',
+      label: '事業開発',
       audience: '事業をつくる',
       tagline: 'コンサルティング／アドバイザリー／メンタリング',
       summary:
@@ -65,7 +65,7 @@ const businessLineRecords: BusinessLineRecord[] = [
       ],
     },
     en: {
-      label: 'New Business & Asia Expansion',
+      label: 'Business Development',
       audience: 'For business',
       tagline: 'Consulting · Advisory · Mentoring',
       summary:
@@ -87,7 +87,7 @@ const businessLineRecords: BusinessLineRecord[] = [
     tier: 'primary',
     audienceEn: 'FOR ORGANIZATIONS',
     ja: {
-      label: '法人向け研修・組織開発',
+      label: '法人向け研修',
       audience: '組織を変える',
       tagline: 'セッション × 個別メンタリング',
       summary:
@@ -102,7 +102,7 @@ const businessLineRecords: BusinessLineRecord[] = [
       ],
     },
     en: {
-      label: 'Corporate Training & Organizational Development',
+      label: 'Corporate Training',
       audience: 'For organizations',
       tagline: 'Group sessions × 1:1 mentoring',
       summary:
@@ -124,7 +124,7 @@ const businessLineRecords: BusinessLineRecord[] = [
     tier: 'primary',
     audienceEn: 'FOR INDIVIDUALS',
     ja: {
-      label: '個人向けプログラム',
+      label: '個人向け研修',
       audience: '人が動き出す',
       tagline: 'ディスカッションパートナー',
       summary:
@@ -139,7 +139,7 @@ const businessLineRecords: BusinessLineRecord[] = [
       ],
     },
     en: {
-      label: 'Programme for Individuals',
+      label: 'For Individuals',
       audience: 'For individuals',
       tagline: 'Discussion partner',
       summary:
@@ -193,7 +193,7 @@ const businessLineRecords: BusinessLineRecord[] = [
     id: 'advisory',
     slug: 'advisory',
     labelEn: 'ADVISORY',
-    tier: 'secondary',
+    tier: 'primary',
     audienceEn: 'FOR BUSINESS',
     ja: {
       label: 'アドバイザリー',

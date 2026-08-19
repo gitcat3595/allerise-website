@@ -3,14 +3,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import CtaSection from '../components/CtaSection.astro';
 import PageHero from '../components/PageHero.astro';
 import PersonCard from '../components/PersonCard.astro';
-import { getMembers, getPartners, getValues } from '../data/members';
+import { getMembers, getValues } from '../data/members';
 import { getLocale } from '../i18n/locale';
 import { getSiteMeta, t } from '../i18n/ui';
 
 const locale = getLocale(Astro.url);
 const site = getSiteMeta(locale);
 const members = getMembers(locale);
-const partners = getPartners(locale);
 const values = getValues(locale);
 ---
 
@@ -84,36 +83,12 @@ const values = getValues(locale);
     </div>
   </section>
 
-  <section class="section partners">
-    <div class="container">
-      <h2 class="section-label section-label--sub">PARTNERS</h2>
-      <h3 class="section-title section-title--sub">{t('partners', locale)}</h3>
-      <div class="people-list">
-        {partners.map((p) => <PersonCard person={p} />)}
-      </div>
-    </div>
-  </section>
-
   <CtaSection locale={locale} />
 </BaseLayout>
 
 <style>
   .people-list {
     margin-top: 1rem;
-  }
-
-  /* Partners sit below the company profile as supporting information. */
-  .partners {
-    padding-top: 3rem;
-  }
-
-  .section-label--sub {
-    font-size: clamp(1.25rem, 2vw, 1.5rem);
-  }
-
-  .section-title--sub {
-    font-size: 1.125rem;
-    font-weight: 700;
   }
 
   .values-grid {

@@ -29,34 +29,6 @@ const memberRecords: PersonRecord[] = [
   },
 ];
 
-const partnerRecords: PersonRecord[] = [
-  {
-    image: '/images/partners/onodera.jpg',
-    ja: {
-      name: '小野寺 聡',
-      role: 'パートナー',
-      bio: 'Reinvent NY Inc.代表。NTTデータ、メルカリを経て米国で日系企業・地方自治体を中心としたクライアントのアメリカ進出コンサルティングやBPOサービス事業を展開。特にテック、サステナブル、食領域に強く、ヴィーガン及びSDGsコンサルティング事業を日米で展開。TOKYTO MX2ワールドマーケッツ月1コメンテーター',
-    },
-    en: {
-      name: 'Satoshi Onodera',
-      role: 'Partner',
-      bio: 'Representative of Reinvent NY Inc. Supports Japanese companies and local governments expanding into the U.S., with strengths in tech, sustainability, and food, including vegan and SDGs consulting across Japan and the U.S.',
-    },
-  },
-  {
-    image: '/images/partners/takahashi.jpg',
-    ja: {
-      name: '高橋 朋康',
-      role: 'パートナー',
-      bio: '東京工業大学大学院 総合理工学研究科 修了。AGC(旭硝子)、リクルートコミュニケーションズを経て参画。介護関連事業・エンジェル投資等も手掛ける。PEファンドの投資実行後の経営企画・PMI等、中小・ベンチャー・オーナー企業等、幅広い経営ステージの意思決定支援及び事業統括実務支援を得意とする。',
-    },
-    en: {
-      name: 'Tomoyasu Takahashi',
-      role: 'Partner',
-      bio: 'Graduate of Tokyo Institute of Technology. After AGC and Recruit Communications, he supports decision-making and business execution across SMEs, ventures, and owner-led companies, including post-investment PMI support.',
-    },
-  },
-];
 
 const valueRecords = [
   {
@@ -81,15 +53,10 @@ function localizePerson(record: PersonRecord, locale: Locale): Person {
 }
 
 export const members: Person[] = memberRecords.map((r) => localizePerson(r, 'ja'));
-export const partners: Person[] = partnerRecords.map((r) => localizePerson(r, 'ja'));
 export const values = valueRecords.map((v) => ({ title: v.title, body: v.ja.body }));
 
 export function getMembers(locale: Locale = 'ja') {
   return memberRecords.map((r) => localizePerson(r, locale));
-}
-
-export function getPartners(locale: Locale = 'ja') {
-  return partnerRecords.map((r) => localizePerson(r, locale));
 }
 
 export function getValues(locale: Locale = 'ja') {
