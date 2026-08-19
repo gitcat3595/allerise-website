@@ -11,11 +11,6 @@ export interface HomeContent {
   heroSecondaryCta: string;
   heroTag: string;
 
-  beliefLabel: string;
-  beliefTitle: string;
-  beliefCopy: string;
-  beliefStatement: string;
-
   pillarsLabel: string;
   pillarsTitle: string;
   pillarsLead: string;
@@ -51,13 +46,6 @@ const content: Record<Locale, HomeContent> = {
     heroPrimaryCta: 'ご相談・お問い合わせ',
     heroSecondaryCta: '事業内容を見る',
     heroTag: 'SINGAPORE / ASIA',
-
-    beliefLabel: 'WHAT WE BELIEVE',
-    beliefTitle: '戦略が止まるのは、たいてい人のところ。',
-    beliefCopy:
-      '事業が進まない理由は、戦略の不足だけではありません。決めきれない、相談できない、目的と目の前の仕事がつながっていない。逆に、人が動き出せば事業は動きます。だからアレーライズは、事業をつくる仕事と、人が動き出す仕事を、切り離さずに扱います。',
-    beliefStatement:
-      '机上の戦略で終わらせない。「分かる」を「自分で動ける」に変えるところまでを、仕事の範囲とします。',
 
     pillarsLabel: 'WHAT WE DO',
     pillarsTitle: '3つの柱で、企業と個人の成長を支える。',
@@ -145,13 +133,6 @@ const content: Record<Locale, HomeContent> = {
     heroPrimaryCta: 'Talk to us',
     heroSecondaryCta: 'See what we do',
     heroTag: 'SINGAPORE / ASIA',
-
-    beliefLabel: 'WHAT WE BELIEVE',
-    beliefTitle: 'Strategy usually stalls at the people, not the plan.',
-    beliefCopy:
-      'A business rarely stalls for lack of strategy. Decisions do not get made, concerns do not get raised, and the daily work loses its line back to the purpose. The reverse is also true: when people start moving, the business moves. So we do not separate the work of building a business from the work of getting people unstuck.',
-    beliefStatement:
-      'We do not stop at the deck. Turning “I understand” into “I can act on my own” is part of the job.',
 
     pillarsLabel: 'WHAT WE DO',
     pillarsTitle: 'Three pillars supporting companies and people.',

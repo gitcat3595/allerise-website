@@ -46,19 +46,6 @@ const cases = getCases(locale);
   </div>
 </section>
 
-<section class="section">
-  <div class="container belief">
-    <div>
-      <p class="label">{home.beliefLabel}</p>
-      <h2 class="section-title">{home.beliefTitle}</h2>
-    </div>
-    <div>
-      <p class="belief__copy">{home.beliefCopy}</p>
-      <p class="belief__statement">{home.beliefStatement}</p>
-    </div>
-  </div>
-</section>
-
 <section class="section section--white" id="services">
   <div class="container">
     <div class="section-head">
@@ -263,28 +250,6 @@ const cases = getCases(locale);
     letter-spacing: 0.12em;
   }
 
-  /* Belief */
-  .belief {
-    display: grid;
-    grid-template-columns: 0.85fr 1.15fr;
-    gap: 4.5rem;
-  }
-
-  .belief__copy {
-    color: var(--color-text-muted);
-    line-height: 2;
-    max-width: 640px;
-  }
-
-  .belief__statement {
-    margin: 2rem 0 0;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--color-border);
-    font-size: 1.0625rem;
-    font-weight: 700;
-    line-height: 1.85;
-  }
-
   /* Three pillars */
   .section-head {
     margin-bottom: 2.5rem;
@@ -450,7 +415,6 @@ const cases = getCases(locale);
 
   @media (max-width: 900px) {
     .hero__grid,
-    .belief,
     .approach__grid {
       grid-template-columns: 1fr;
       gap: 2.25rem;
