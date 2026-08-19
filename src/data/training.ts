@@ -96,32 +96,32 @@ const content: Record<Locale, TrainingContent> = {
     ],
 
     typesLabel: 'PROGRAM TYPES',
-    typesTitle: '課題の性質に合わせて、研修と伴走を設計する。',
+    typesTitle: '目的に合わせて、セッションと個別メンタリングを組み合わせる。',
     typesLead:
-      '一律の集合研修ではなく、組織の成熟度、参加者の役割、実現したい変化に合わせて、4つの型を単独または組み合わせて提供します。',
+      '一律の集合研修ではありません。集合セッションで共通言語をつくり、参加者一人ひとりへの個別メンタリングで実際の行動につなげます。以下の4つの文脈で導入いただいています。福利厚生として継続的にご利用いただくことも可能です。',
     types: [
       {
-        tag: 'TYPE 01',
-        title: 'マネジャー研修・伴走',
-        body: '理念、チーム目標、日々の業務、個人の成長をつなぐマネジャーのためのプログラム。45問のアラインメント診断、結果対話、チームでの行動設計、30日・90日後のPulse測定を行います。',
+        tag: 'CONTEXT 01',
+        title: '組織変革',
+        body: '理念や方針が現場の判断につながっていない状態を扱います。45問のアラインメント診断でどこで接続が切れているかを可視化し、会議・情報共有・意思決定の基準を具体的に変えていきます。',
         anchor: 'manager',
       },
       {
-        tag: 'TYPE 02',
-        title: '新規事業開発型',
-        body: '新規事業や変革テーマを担うチーム向け。赤ペン思考整理を用いて、曖昧な課題を構造化し、仮説・優先順位・実行計画をつくります。机上の議論で終わらず、次の検証へ進めます。',
-        anchor: 'business',
+        tag: 'CONTEXT 02',
+        title: 'リーダー育成',
+        body: 'マネジャー・次世代リーダー向け。チーム目標、日々の優先順位、メンバーとの育成対話をつなぐ力を育てます。集合セッションと1on1メンタリング、30日・90日後の定点観測をセットで設計します。',
+        anchor: 'manager',
       },
       {
-        tag: 'TYPE 03',
-        title: 'キャリアメンタリング',
-        body: '本人の強み、仕事の意味、次に伸ばす能力を言葉にし、キャリアの選択と日々の成長行動をつなげます。若手・次世代リーダー・異動者など、対象に応じて1on1または少人数で実施します。',
+        tag: 'CONTEXT 03',
+        title: '女性のキャリア支援',
+        body: 'ライフイベントと仕事の両立、昇進への迷い、ロールモデルの不在。制度だけでは動かない部分を、少人数セッションと個別メンタリングで扱います。本人が自分の言葉でキャリアを描ける状態を目指します。',
         anchor: 'career',
       },
       {
-        tag: 'TYPE 04',
-        title: 'ビジネスメンタリング',
-        body: '事業・プロジェクトを前に進めたい個人または少人数チーム向け。目標設定、進捗確認、論点整理、意思決定を、原則6か月の定点チェックで伴走します。',
+        tag: 'CONTEXT 04',
+        title: '事業推進・新規事業',
+        body: '新規事業や変革テーマを担うチーム向け。独自の思考整理メソッドで曖昧な課題を構造化し、仮説・優先順位・実行計画をつくります。原則6か月の定点チェックで伴走します。',
         anchor: 'business',
       },
     ],
@@ -192,9 +192,9 @@ const content: Record<Locale, TrainingContent> = {
       '新規事業型はワークショップを中心に、ビジネスメンタリングは個人または少人数チームに対して原則6か月間の伴走として設計します。',
 
     methodLabel: 'METHOD',
-    methodTitle: '赤ペン思考整理とは',
+    methodTitle: '独自の思考整理メソッド',
     methodBody:
-      '赤ペンを用いて思考を書き出し、構造化するメソッドです。頭の中にある曖昧な考えを可視化し、優先順位を明確にしたうえで、具体的な行動につなげます。ジャーナリング（感情の記録）ではなく、思考の整理と意思決定支援を目的とした法人向けプログラムです。',
+      '頭の中にある曖昧な考えを書き出し、構造化するための独自メソッドです。何が事実で、何が解釈で、何を望んでいるのかを切り分け、優先順位を明確にしたうえで具体的な行動につなげます。感情を記録することが目的ではなく、思考の整理と意思決定の支援を目的とした法人向けプログラムです。',
     methodForTitle: 'こんな課題におすすめです',
     methodFor: [
       '新規事業の検討が進まない、議論が抽象的なまま終わる',
@@ -204,7 +204,7 @@ const content: Record<Locale, TrainingContent> = {
     ],
 
     careerLabel: 'TYPE 03',
-    careerTitle: 'キャリアメンタリング',
+    careerTitle: 'キャリア支援・個別メンタリング',
     careerLead:
       '「今の仕事をどう成長につなげるか」を、本人が自分の言葉で整理できるようにします。人生論だけに寄せず、現職の役割、強み、伸ばす能力、次の行動まで具体化します。',
     careerOutcomes: [
@@ -270,32 +270,32 @@ const content: Record<Locale, TrainingContent> = {
     ],
 
     typesLabel: 'PROGRAM TYPES',
-    typesTitle: 'Training and support designed around the nature of the issue.',
+    typesTitle: 'Group sessions and 1:1 mentoring, combined for your purpose.',
     typesLead:
-      'Rather than one-size-fits-all group training, we offer four program types — alone or in combination — matched to your organization’s maturity, the participants’ roles, and the change you want to see.',
+      'Not a standard course. Group sessions build a shared language; one-to-one mentoring turns it into action for each participant. Companies bring us in for the four contexts below, and the programme can run continuously as an employee benefit.',
     types: [
       {
-        tag: 'TYPE 01',
-        title: 'Manager training & support',
-        body: 'A program for managers connecting mission, team goals, daily work, and individual growth. It includes a 45-question alignment assessment, a results dialogue, team action design, and pulse checks at 30 and 90 days.',
+        tag: 'CONTEXT 01',
+        title: 'Organizational change',
+        body: 'For when the mission and direction no longer reach everyday decisions. A 45-question alignment assessment shows where the connection breaks, and we change the meetings, information flows, and decision criteria that hold it back.',
         anchor: 'manager',
       },
       {
-        tag: 'TYPE 02',
-        title: 'New business development',
-        body: 'For teams leading new ventures or change initiatives. Using the REDPEN thinking method, we structure ambiguous problems into hypotheses, priorities, and an execution plan that moves to the next test.',
-        anchor: 'business',
+        tag: 'CONTEXT 02',
+        title: 'Leadership development',
+        body: 'For managers and next-generation leaders: connecting team goals, daily priorities, and development conversations. Group sessions, 1:1 mentoring, and pulse checks at 30 and 90 days are designed as one package.',
+        anchor: 'manager',
       },
       {
-        tag: 'TYPE 03',
-        title: 'Career mentoring',
-        body: 'Putting strengths, the meaning of the work, and the next capability to build into the person’s own words — connecting career choices with everyday growth. Delivered 1:1 or in small groups for early-career staff, next-generation leaders, and those changing roles.',
+        tag: 'CONTEXT 03',
+        title: 'Career support for women',
+        body: 'Balancing life events with work, hesitation about promotion, the absence of role models. Small-group sessions and individual mentoring address what policy alone cannot move, so each person can describe her own career in her own words.',
         anchor: 'career',
       },
       {
-        tag: 'TYPE 04',
-        title: 'Business mentoring',
-        body: 'For individuals or small teams driving a business or project. We support goal setting, progress review, framing, and decision-making through regular check-ins over a six-month engagement.',
+        tag: 'CONTEXT 04',
+        title: 'Business and new ventures',
+        body: 'For teams leading new ventures or change initiatives. Our own method for structuring thinking turns ambiguous problems into hypotheses, priorities, and an execution plan, with check-ins over a six-month engagement.',
         anchor: 'business',
       },
     ],
@@ -366,9 +366,9 @@ const content: Record<Locale, TrainingContent> = {
       'The new business type is workshop-led; business mentoring is designed as a six-month engagement with an individual or a small team.',
 
     methodLabel: 'METHOD',
-    methodTitle: 'What is REDPEN thinking?',
+    methodTitle: 'Our method for structuring thinking',
     methodBody:
-      'A method for writing out and structuring thoughts with a red pen — turning vague ideas into visible priorities and concrete action. It is designed for organizational decision-making, not emotional journaling.',
+      'A proprietary method for writing out and structuring what is in your head — separating fact from interpretation from what you actually want, setting priorities, and turning it into concrete action. It is built for organizational decision-making, not for recording feelings.',
     methodForTitle: 'Recommended for teams facing',
     methodFor: [
       'Stalled new business discussions that stay abstract',
@@ -378,7 +378,7 @@ const content: Record<Locale, TrainingContent> = {
     ],
 
     careerLabel: 'TYPE 03',
-    careerTitle: 'Career mentoring',
+    careerTitle: 'Career support & 1:1 mentoring',
     careerLead:
       'We help people articulate, in their own words, how their current work connects to their growth. Not abstract life advice — concrete work on role, strengths, capabilities to build, and the next action.',
     careerOutcomes: [
