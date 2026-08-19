@@ -45,7 +45,7 @@ const cases = getCases(locale);
   </div>
 </section>
 
-<section class="section section--white" id="services">
+<section class="section" id="services">
   <div class="container">
     <div class="section-head">
       <div>
@@ -66,40 +66,6 @@ const cases = getCases(locale);
             ))}
           </div>
         </article>
-      ))}
-    </div>
-  </div>
-</section>
-
-<section class="section approach">
-  <div class="container approach__grid">
-    <div>
-      <p class="label label--inverse">{home.approachLabel}</p>
-      <h2 class="approach__title">{home.approachTitle}</h2>
-    </div>
-    <div class="approach__list">
-      {home.approach.map((item) => (
-        <article class="approach__item">
-          <b>{item.num}</b>
-          <div>
-            <h3>{item.title}</h3>
-            <p>{item.body}</p>
-          </div>
-        </article>
-      ))}
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container">
-    <p class="label">{home.perspectiveLabel}</p>
-    <h2 class="section-title">{home.perspectiveTitle}</h2>
-    <div class="places">
-      {home.perspectivePlaces.map((place) => (
-        <figure class="place">
-          <img src={place.image} alt={place.alt} width="1000" height="563" loading="lazy" />
-        </figure>
       ))}
     </div>
   </div>
@@ -337,93 +303,8 @@ const cases = getCases(locale);
     margin: 0 0 1.5rem;
   }
 
-  /* Approach */
-  .approach {
-    background: var(--color-primary);
-    color: #fff;
-  }
-
-  .approach__grid {
-    display: grid;
-    grid-template-columns: 0.8fr 1.2fr;
-    gap: 4.5rem;
-  }
-
-  .approach__title {
-    font-size: clamp(1.5rem, 3vw, 2.25rem);
-    font-weight: 700;
-    max-width: 430px;
-    margin: 0;
-  }
-
-  .approach__list {
-    border-top: 1px solid rgba(255, 255, 255, 0.34);
-  }
-
-  .approach__item {
-    display: grid;
-    grid-template-columns: 100px 1fr;
-    gap: 1.5rem;
-    padding: 1.5rem 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.34);
-  }
-
-  .approach__item b {
-    font-family: var(--font-en);
-    font-size: 0.72rem;
-    letter-spacing: 0.12em;
-    color: #c9d2ff;
-  }
-
-  .approach__item h3 {
-    font-size: 1.1rem;
-    margin: 0 0 0.35rem;
-  }
-
-  .approach__item p {
-    font-size: 0.9rem;
-    line-height: 1.85;
-    color: #dbe1ff;
-    margin: 0;
-  }
-
-  /* Perspective */
-  .places {
-    display: grid;
-    grid-template-columns: 1.45fr 0.72fr 0.72fr;
-    gap: 0.875rem;
-    margin-top: 2.5rem;
-  }
-
-  .place {
-    position: relative;
-    height: 380px;
-    margin: 0;
-    overflow: hidden;
-    background: var(--color-border);
-  }
-
-  .place img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.45s ease;
-  }
-
-  .place:hover img {
-    transform: scale(1.04);
-  }
-
-  .place::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(0deg, rgba(8, 20, 44, 0.58), transparent 55%);
-  }
-
-  @media (max-width: 900px) {
+      @media (max-width: 900px) {
     .hero__grid,
-    .approach__grid,
     .mission__grid {
       grid-template-columns: 1fr;
       gap: 2.25rem;
@@ -437,17 +318,6 @@ const cases = getCases(locale);
       grid-template-columns: 1fr;
     }
 
-    .places {
-      grid-template-columns: 1fr 1fr;
-    }
-
-    .place:first-child {
-      grid-column: span 2;
-    }
-
-    .place {
-      height: 260px;
-    }
   }
 
   @media (max-width: 600px) {
@@ -459,17 +329,5 @@ const cases = getCases(locale);
       height: 250px;
     }
 
-    .places {
-      grid-template-columns: 1fr;
-    }
-
-    .place:first-child {
-      grid-column: span 1;
-    }
-
-    .approach__item {
-      grid-template-columns: 1fr;
-      gap: 0.35rem;
-    }
   }
 </style>

@@ -20,14 +20,6 @@ export interface HomeContent {
     links: { label: string; path: string }[];
   }[];
 
-  perspectiveLabel: string;
-  perspectiveTitle: string;
-  perspectivePlaces: { image: string; alt: string }[];
-
-  approachLabel: string;
-  approachTitle: string;
-  approach: { num: string; title: string; body: string }[];
-
   otherLabel: string;
   otherTitle: string;
   otherLead: string;
@@ -73,45 +65,6 @@ const content: Record<Locale, HomeContent> = {
       },
     ],
 
-    perspectiveLabel: 'PERSPECTIVE',
-    perspectiveTitle: '違いを越え、前に進むための視点を。',
-    perspectivePlaces: [
-      {
-        image: '/images/perspective-singapore-marinabay.jpg',
-        alt: 'シンガポールのマリーナベイ',
-      },
-      { image: '/images/perspective-vietnam-bike.jpg', alt: 'ベトナムの街並み' },
-      {
-        image: '/images/perspective-seoul-skyscraper.jpg',
-        alt: '韓国・ソウルの都市風景',
-      },
-    ],
-
-    approachLabel: 'OUR APPROACH',
-    approachTitle: '一度きりで終わらせず、実務に戻す。',
-    approach: [
-      {
-        num: '01 / LISTEN',
-        title: '課題と目的を、丁寧に聞く',
-        body: '目に見える症状だけでなく、実現したい変化と、現場で実際に起きていることの両方を整理します。',
-      },
-      {
-        num: '02 / DESIGN',
-        title: '対象に合わせて、進め方を設計する',
-        body: '一律のパッケージではなく、事業フェーズ、参加者の役割、実現したい変化に合わせて組み立てます。',
-      },
-      {
-        num: '03 / PRACTICE',
-        title: '実際の仕事を題材に、実践する',
-        body: '抽象的な議論で終わらせず、案件、数字、顧客、日々の判断に結びつけて考えます。',
-      },
-      {
-        num: '04 / CHECK-IN',
-        title: '対話と定点観測で、変化を続ける',
-        body: '進捗だけでなく前提と論点を更新する。小さな改善を重ねて、習慣に変えていきます。',
-      },
-    ],
-
     otherLabel: 'OTHER SERVICES',
     otherTitle: 'その他の支援',
     otherLead:
@@ -154,45 +107,6 @@ const content: Record<Locale, HomeContent> = {
         title: 'Advisory',
         body: 'Ongoing support for executives and business leaders across new business, overseas expansion, and talent development — from a seat in management meetings to regular sparring and project-based involvement.',
         links: [{ label: 'View advisory', path: '/service/advisory' }],
-      },
-    ],
-
-    perspectiveLabel: 'PERSPECTIVE',
-    perspectiveTitle: 'Perspective that moves teams across difference.',
-    perspectivePlaces: [
-      {
-        image: '/images/perspective-singapore-marinabay.jpg',
-        alt: 'Marina Bay, Singapore',
-      },
-      { image: '/images/perspective-vietnam-bike.jpg', alt: 'A street in Vietnam' },
-      {
-        image: '/images/perspective-seoul-skyscraper.jpg',
-        alt: 'Seoul skyline, Korea',
-      },
-    ],
-
-    approachLabel: 'OUR APPROACH',
-    approachTitle: 'Never a one-off — always back to real work.',
-    approach: [
-      {
-        num: '01 / LISTEN',
-        title: 'Understand the issue and the intent',
-        body: 'We look past the visible symptoms to both the change you want and what is actually happening on the ground.',
-      },
-      {
-        num: '02 / DESIGN',
-        title: 'Design the approach for the audience',
-        body: 'Not a fixed package — we build around the stage of the business, the roles involved, and the change you are after.',
-      },
-      {
-        num: '03 / PRACTICE',
-        title: 'Practise on the real work',
-        body: 'Discussion stays connected to live projects, numbers, customers, and everyday decisions.',
-      },
-      {
-        num: '04 / CHECK-IN',
-        title: 'Keep changing through dialogue and review',
-        body: 'We update the assumptions, not only the progress — letting small improvements become habit.',
       },
     ],
 
