@@ -148,9 +148,20 @@ const cases = getCases(locale);
     />
     <div>
       <p class="label">{t('aboutLabel', locale)}</p>
-      <p class="about-body">{t('aboutLead', locale)}</p>
+      <h2 class="section-title">{t('companyAboutTitle', locale)}</h2>
+      <p class="about-body">{t('companyAboutBody', locale)}</p>
       <ArrowLink href={localePath(locale, '/company')}>{t('viewCompany', locale)}</ArrowLink>
     </div>
+  </div>
+</section>
+
+<section class="section mission">
+  <div class="container mission__grid">
+    <div>
+      <p class="label label--inverse">MISSION</p>
+      <h2 class="mission__title">{t('missionTitle', locale)}</h2>
+    </div>
+    <p class="mission__body">{t('missionBody', locale)}</p>
   </div>
 </section>
 
@@ -310,6 +321,30 @@ const cases = getCases(locale);
     text-decoration: underline;
   }
 
+  .mission {
+    background: var(--color-primary);
+    color: #fff;
+  }
+
+  .mission__grid {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .mission__title {
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    font-weight: 700;
+    margin: 0;
+  }
+
+  .mission__body {
+    margin: 0;
+    line-height: 2;
+    color: #dbe1ff;
+  }
+
   .about-body {
     max-width: 620px;
     color: var(--color-text-muted);
@@ -415,7 +450,8 @@ const cases = getCases(locale);
 
   @media (max-width: 900px) {
     .hero__grid,
-    .approach__grid {
+    .approach__grid,
+    .mission__grid {
       grid-template-columns: 1fr;
       gap: 2.25rem;
     }
