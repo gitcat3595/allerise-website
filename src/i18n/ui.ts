@@ -9,6 +9,7 @@ const messages = {
       'Allerise Pte. Ltd.（アレーライズ）は、コンサルティングおよび研修を通じて企業や個人の成長を支えるシンガポール拠点の会社です。事業開発、研修（法人向け・個人向け）、アドバイザリーの3つの柱で支援しています。',
     navTop: 'ホーム',
     navBusiness: 'コンサルティング事業',
+    navTrainingParent: '研修事業',
     navTraining: '法人向け研修',
     navIndividual: '個人向け研修',
     navService: '事業内容',
@@ -20,7 +21,6 @@ const messages = {
     mainNav: 'メインナビゲーション',
     footerNav: 'フッターナビゲーション',
     companyInfo: '会社情報',
-    careers: '採用情報',
     privacy: 'プライバシーポリシー',
     home: 'ホーム',
     learnMore: '詳しく見る',
@@ -32,13 +32,9 @@ const messages = {
     backToCases: '事例一覧に戻る',
     contactUs: 'お問い合わせ',
     contactCta: 'お問い合わせはこちら',
-    careersCta: '採用情報はこちら',
     ctaContactTitle: 'お問い合わせ',
     ctaContactText:
       'サービスに関するご質問や、取材・パートナーシップのご相談などはこちらからお気軽にご連絡ください。',
-    ctaCareersTitle: '採用について',
-    ctaCareersText:
-      'チームのビジョンに共感し、共に前進できる仲間を探しています。一緒に働いてみませんか？',
     aboutLabel: 'ABOUT US',
     aboutTitle: '',
     aboutLead:
@@ -77,6 +73,7 @@ const messages = {
     missionBody:
       'ビジネスを通じて世の中に新たな価値を生み出していくこと、New Values to the world をミッションとしています。新規事業によって今までになかった価値を作り、それを拡大していきます。日本発の価値が世界へと広がり、インパクトを与えていく世の中へ。日本企業のビジネス展開をサポートすることによってその価値の拡大を担います。',
     members: 'メンバー',
+    representativeSection: '代表紹介',
     partners: 'パートナー',
     values: 'バリュー',
     companyProfile: '会社概要',
@@ -104,6 +101,7 @@ const messages = {
       'Allerise Pte. Ltd. is a Singapore-based firm supporting the growth of companies and individuals through consulting and training, across three pillars: business development, training, and advisory.',
     navTop: 'Home',
     navBusiness: 'Consulting',
+    navTrainingParent: 'Training',
     navTraining: 'Corporate Training',
     navIndividual: 'For Individuals',
     navService: 'Services',
@@ -115,7 +113,6 @@ const messages = {
     mainNav: 'Main navigation',
     footerNav: 'Footer navigation',
     companyInfo: 'Company',
-    careers: 'Careers',
     privacy: 'Privacy Policy',
     home: 'Home',
     learnMore: 'Learn more',
@@ -127,13 +124,9 @@ const messages = {
     backToCases: 'Back to cases',
     contactUs: 'Contact',
     contactCta: 'Contact us',
-    careersCta: 'View careers',
     ctaContactTitle: 'Contact',
     ctaContactText:
       'For questions about our services, media inquiries, or partnership discussions, please reach out.',
-    ctaCareersTitle: 'Careers',
-    ctaCareersText:
-      'We are looking for people who share our vision and want to move forward with us.',
     aboutLabel: 'ABOUT US',
     aboutTitle: '',
     aboutLead:
@@ -173,6 +166,7 @@ const messages = {
     missionBody:
       'Our mission is New Values to the World — creating value through business and expanding its reach. We help Japanese companies take their ideas global and increase their impact worldwide.',
     members: 'Team',
+    representativeSection: 'Representative',
     partners: 'Partners',
     values: 'Values',
     companyProfile: 'Company profile',
@@ -226,10 +220,15 @@ export function getSiteMeta(locale: Locale) {
 export function getNav(locale: Locale) {
   const m = messages[locale];
   return [
-    { href: localePath(locale, '/'), label: m.navTop },
     { href: localePath(locale, '/service/new-business-development'), label: m.navBusiness },
-    { href: localePath(locale, '/service/training'), label: m.navTraining },
-    { href: localePath(locale, '/service/individual'), label: m.navIndividual },
+    {
+      href: localePath(locale, '/service/training'),
+      label: m.navTrainingParent,
+      children: [
+        { href: localePath(locale, '/service/training'), label: m.navTraining },
+        { href: localePath(locale, '/service/individual'), label: m.navIndividual },
+      ],
+    },
     { href: localePath(locale, '/case'), label: m.navCase },
     { href: localePath(locale, '/company'), label: m.navCompany },
     { href: localePath(locale, '/contact'), label: m.navContact },

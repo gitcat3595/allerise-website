@@ -18,11 +18,6 @@ const locale = Astro.props.locale ?? 'ja';
       <p class="cta__text">{t('ctaContactText', locale)}</p>
       <ArrowLink href={localePath(locale, '/contact')} variant="inverse">{t('contactCta', locale)}</ArrowLink>
     </div>
-    <div class="cta__col">
-      <h2 class="cta__title">{t('ctaCareersTitle', locale)}</h2>
-      <p class="cta__text">{t('ctaCareersText', locale)}</p>
-      <ArrowLink href={localePath(locale, '/coming-soon')} variant="inverse-external">{t('careersCta', locale)}</ArrowLink>
-    </div>
   </div>
 </section>
 
@@ -33,19 +28,12 @@ const locale = Astro.props.locale ?? 'ja';
   }
 
   .cta__grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
     max-width: var(--max-width);
     margin-inline: auto;
   }
 
   .cta__col {
     padding: 4rem 3rem;
-    border-right: 1px solid rgba(255, 255, 255, 0.35);
-  }
-
-  .cta__col:last-child {
-    border-right: none;
   }
 
   .cta__title {
@@ -62,18 +50,8 @@ const locale = Astro.props.locale ?? 'ja';
   }
 
   @media (max-width: 768px) {
-    .cta__grid {
-      grid-template-columns: 1fr;
-    }
-
     .cta__col {
       padding: 3rem 1.5rem;
-      border-right: none;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.35);
-    }
-
-    .cta__col:last-child {
-      border-bottom: none;
     }
   }
 </style>

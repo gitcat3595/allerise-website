@@ -34,16 +34,6 @@ const values = getValues(locale);
 
   <section class="section section--white">
     <div class="container">
-      <h2 class="section-label">MEMBERS</h2>
-      <h3 class="section-title">{t('members', locale)}</h3>
-      <div class="people-list">
-        {members.map((m) => <PersonCard person={m} />)}
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
       <h2 class="section-label">OUR VALUES</h2>
       <h3 class="section-title">{t('values', locale)}</h3>
       <div class="values-grid">
@@ -53,6 +43,16 @@ const values = getValues(locale);
             <p>{v.body}</p>
           </article>
         ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-label">REPRESENTATIVE</h2>
+      <h3 class="section-title">{t('representativeSection', locale)}</h3>
+      <div class="people-list">
+        {members.map((m) => <PersonCard person={m} />)}
       </div>
     </div>
   </section>
@@ -70,15 +70,6 @@ const values = getValues(locale);
         <dd>{site.registeredAddress}</dd>
         <dt>{t('profileRepresentative', locale)}</dt>
         <dd>{site.representative}</dd>
-        <dt>{t('profileFounded', locale)}</dt>
-        <dd>{site.founded}</dd>
-        <dt>{t('profileType', locale)}</dt>
-        <dd>{site.companyType}</dd>
-        <dt>{t('profileActivity', locale)}</dt>
-        <dd>
-          {site.principalActivity}
-          <span class="profile__ssic">（SSIC {site.ssic}）</span>
-        </dd>
       </dl>
     </div>
   </section>

@@ -13,9 +13,17 @@ const nav = getNav(locale);
 const currentPath = Astro.url.pathname;
 const normalize = (path: string) => (path.length > 1 ? path.replace(/\/$/, '') : path);
 const current = normalize(currentPath);
-const isTrainingPage = current.endsWith('/service/training');
-const isServiceSection = current.includes('/service') && !isTrainingPage;
 const langHref = alternateLocalePath(currentPath);
+
+/** A nav item is active when the page matches it, or matches one of its children. */
+function isActive(item: { href: string; children?: { href: string }[] }) {
+  const self = normalize(item.href);
+  if (self.endsWith('/case')) return current.includes('/case');
+  if (item.children) {
+    return item.children.some((child) => current === normalize(child.href));
+  }
+  return current === self;
+}
 ---
 
 <header class="header">
@@ -31,40 +39,36 @@ const langHref = alternateLocalePath(currentPath);
     <nav class="header__nav" aria-label={t('mainNav', locale)}>
       <ul>
         {nav.map((item) => (
-          <li>
-            <a
-              href={item.href}
-              class:list={[
-                'header__link',
-                {
-                  'is-active': item.href.endsWith('/service/training')
-                    ? isTrainingPage
-                    : item.href.endsWith('/service')
-                      ? isServiceSection
-                      : item.href.endsWith('/case')
-                        ? current.includes('/case')
-                        : current === normalize(item.href),
-                },
-              ]}
-            >
+          <li class:list={['header__item', { 'has-children': !!item.children }]}>
+            <a href={item.href} class:list={['header__link', { 'is-active': isActive(item) }]}>
               {item.label}
+              {item.children && (
+                <svg class="header__caret" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+              )}
             </a>
+            {item.children && (
+              <ul class="header__submenu">
+                {item.children.map((child) => (
+                  <li>
+                    <a
+                      href={child.href}
+                      class:list={['header__sublink', { 'is-active': current === normalize(child.href) }]}
+                    >
+                      {child.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
           </li>
         ))}
-        <li>
-          <a href={langHref} class="header__link header__lang">
-            {t('langSwitch', locale)}
-          </a>
+        <li class="header__item">
+          <a href={langHref} class="header__link header__lang">{t('langSwitch', locale)}</a>
         </li>
       </ul>
     </nav>
-    <a href={localePath(locale, '/contact')} class="header__contact">
-      <span>{t('navContact', locale)}</span>
-      <svg class="header__contact-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-        <rect x="2" y="4" width="20" height="16" rx="2" />
-        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-      </svg>
-    </a>
   </div>
 </header>
 
@@ -77,6 +81,20 @@ const langHref = alternateLocalePath(currentPath);
     toggle.setAttribute('aria-expanded', String(!expanded));
     navEl?.classList.toggle('is-open');
     toggle.classList.toggle('is-open');
+  });
+
+  // On touch screens the first tap opens the submenu instead of following the link.
+  const parents = document.querySelectorAll<HTMLElement>('.header__item.has-children');
+  parents.forEach((parent) => {
+    const link = parent.querySelector('a');
+    link?.addEventListener('click', (event) => {
+      if (window.matchMedia('(hover: hover)').matches) return;
+      if (!parent.classList.contains('is-open')) {
+        event.preventDefault();
+        parents.forEach((other) => other.classList.remove('is-open'));
+        parent.classList.add('is-open');
+      }
+    });
   });
 </script>
 
@@ -120,21 +138,30 @@ const langHref = alternateLocalePath(currentPath);
     margin-left: auto;
   }
 
-  .header__nav ul {
+  .header__nav > ul {
     display: flex;
-    gap: 1.35rem;
+    align-items: center;
+    gap: 1.75rem;
     list-style: none;
     margin: 0;
     padding: 0;
   }
 
+  .header__item {
+    position: relative;
+  }
+
   .header__link {
-    font-size: 0.875rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.9375rem;
     font-weight: 700;
     color: var(--color-text);
     text-decoration: none;
     padding: 0.625rem 0;
     border-bottom: 2px solid transparent;
+    white-space: nowrap;
   }
 
   .header__link:hover,
@@ -144,28 +171,54 @@ const langHref = alternateLocalePath(currentPath);
     border-bottom-color: var(--color-text);
   }
 
+  .header__caret {
+    flex-shrink: 0;
+  }
+
   .header__lang {
     color: var(--color-primary);
   }
 
-  .header__contact {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
+  /* Dropdown */
+  .header__submenu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 200px;
+    margin: 0;
+    padding: 0.5rem 0;
+    list-style: none;
+    background: var(--color-bg-white);
+    border: 1px solid var(--color-border);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(4px);
+    transition: opacity 0.15s ease, transform 0.15s ease;
+  }
+
+  .header__item.has-children:hover .header__submenu,
+  .header__item.has-children:focus-within .header__submenu,
+  .header__item.has-children.is-open .header__submenu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .header__sublink {
+    display: block;
+    padding: 0.6rem 1.25rem;
     font-size: 0.875rem;
-    font-weight: 400;
-    color: var(--color-text-muted);
+    font-weight: 700;
+    color: var(--color-text);
     text-decoration: none;
     white-space: nowrap;
   }
 
-  .header__contact:hover {
+  .header__sublink:hover,
+  .header__sublink.is-active {
+    background: var(--color-bg);
     color: var(--color-primary);
     text-decoration: none;
-  }
-
-  .header__contact-icon {
-    flex-shrink: 0;
   }
 
   .header__toggle {
@@ -197,6 +250,8 @@ const langHref = alternateLocalePath(currentPath);
       top: var(--header-height);
       left: 0;
       right: 0;
+      max-height: calc(100vh - var(--header-height));
+      overflow-y: auto;
       background: var(--color-bg);
       border-bottom: 1px solid var(--color-border);
       padding: 1rem;
@@ -207,19 +262,40 @@ const langHref = alternateLocalePath(currentPath);
       display: block;
     }
 
-    .header__nav ul {
+    .header__nav > ul {
       flex-direction: column;
+      align-items: stretch;
       gap: 0;
     }
 
     .header__link {
-      display: block;
+      display: flex;
+      justify-content: space-between;
       padding: 0.75rem 0;
       border-bottom: 1px solid var(--color-border);
     }
 
-    .header__contact {
-      display: none;
+    .header__submenu {
+      position: static;
+      min-width: 0;
+      border: none;
+      background: transparent;
+      padding: 0;
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.2s ease;
+    }
+
+    .header__item.has-children.is-open .header__submenu {
+      max-height: 300px;
+    }
+
+    .header__sublink {
+      padding: 0.7rem 0 0.7rem 1.25rem;
+      border-bottom: 1px solid var(--color-border);
     }
   }
 </style>

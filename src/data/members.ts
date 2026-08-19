@@ -43,8 +43,8 @@ const valueRecords = [
   },
   {
     title: 'Positive People Impact',
-    ja: 'ビジネスに関わるすべての「人」へのポジティブなインパクトを大切にしています。アレーライズのビジネスを通じてポジティブなインパクトが広がることを願っています。',
-    en: 'We care about positive impact on every person involved in our work and aim to spread that impact through our business.',
+    ja: 'ビジネスでかかわるすべての人に、ポジティブなインパクトを。取引先も、参加者も、働く仲間も、関わったことで少し前に進める。そんな関係を大切にしています。',
+    en: 'A positive impact for everyone we work with in business — clients, participants, and colleagues alike. We want people to move forward for having worked with us.',
   },
 ];
 
