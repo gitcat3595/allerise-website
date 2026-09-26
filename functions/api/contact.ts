@@ -47,7 +47,7 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
   }
 
   const categoryLabel = CATEGORY_LABELS[category] || category;
-  const toEmail = env.CONTACT_EMAIL || 'contact@allerise.com';
+  const toEmail = env.CONTACT_EMAIL || 'noriko.yanagisawa@allerise.com';
 
   const emailBody = `
 お問い合わせ種別: ${categoryLabel}
