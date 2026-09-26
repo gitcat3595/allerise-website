@@ -7,9 +7,11 @@ interface Props {
   caseStudy: CaseStudy;
   heading?: 'h2' | 'h3';
   locale?: Locale;
+  /** Service pages list work without dates. */
+  showDate?: boolean;
 }
 
-const { caseStudy, heading = 'h3', locale = 'ja' } = Astro.props;
+const { caseStudy, heading = 'h3', locale = 'ja', showDate = true } = Astro.props;
 const TitleTag = heading;
 ---
 
@@ -17,7 +19,7 @@ const TitleTag = heading;
   <img src={caseStudy.image} alt="" class="case-card__image" width="800" height="450" loading="lazy" />
   <div class="case-card__body">
     <span class="case-card__tag">{caseStudy.category}</span>
-    <time class="case-card__date">{caseStudy.date}</time>
+    {showDate && <time class="case-card__date">{caseStudy.date}</time>}
     <TitleTag class="case-card__title">{caseStudy.title}</TitleTag>
   </div>
 </a>

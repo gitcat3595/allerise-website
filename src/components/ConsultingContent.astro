@@ -1,0 +1,159 @@
+---
+import ArrowLink from './ArrowLink.astro';
+import CaseCard from './CaseCard.astro';
+import PageHero from './PageHero.astro';
+import ServiceNav from './ServiceNav.astro';
+import { getCases } from '../data/cases';
+import { getConsultingContent } from '../data/consulting';
+import type { Locale } from '../i18n/locale';
+import { localePath } from '../i18n/locale';
+
+interface Props {
+  locale?: Locale;
+}
+
+const locale = Astro.props.locale ?? 'ja';
+const c = getConsultingContent(locale);
+const cases = getCases(locale);
+---
+
+<PageHero label={c.heroLabel} title={c.heroTitle} image="/images/service-banner.jpg" />
+
+<section class="section section--white">
+  <div class="container">
+    <ServiceNav locale={locale} />
+    <p class="c-label">{c.businessLabel}</p>
+    <h2 class="section-title">{c.businessTitle}</h2>
+    <div class="c-intro">
+      {c.businessBody.map((paragraph) => <p>{paragraph}</p>)}
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <p class="c-label">{c.servicesLabel}</p>
+    <div class="c-services">
+      {c.services.map((service) => (
+        <article class="c-service">
+          <div class="c-service__head">
+            <p class="c-service__label">{service.labelEn}</p>
+            <h3 class="c-service__title">{service.title}</h3>
+          </div>
+          <div class="c-service__body">
+            <p>{service.body}</p>
+            <ul>
+              {service.items.map((item) => <li>{item}</li>)}
+            </ul>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="section section--white">
+  <div class="container">
+    <p class="c-label">{c.casesLabel}</p>
+    <h2 class="section-title">{c.casesTitle}</h2>
+    <div class="grid-3" style="margin-top: 2.5rem;">
+      {cases.map((caseStudy) => (
+        <CaseCard caseStudy={caseStudy} locale={locale} showDate={false} />
+      ))}
+    </div>
+    <div style="margin-top: 2.5rem;">
+      <ArrowLink href={localePath(locale, '/case')}>{c.casesLink}</ArrowLink>
+    </div>
+  </div>
+</section>
+
+<style>
+  .c-label {
+    font-family: var(--font-en);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--color-primary);
+    margin: 0 0 0.75rem;
+  }
+
+  .c-intro {
+    max-width: 820px;
+  }
+
+  .c-intro p {
+    color: var(--color-text-muted);
+    line-height: 2;
+    margin-bottom: 1.25rem;
+  }
+
+  .c-intro p:last-child {
+    margin-bottom: 0;
+  }
+
+  .c-services {
+    margin-top: 2.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .c-service {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 3rem;
+    padding: 2.5rem 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .c-service__label {
+    font-family: var(--font-en);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--color-primary);
+    margin: 0 0 0.5rem;
+  }
+
+  .c-service__title {
+    font-size: clamp(1.25rem, 2.2vw, 1.625rem);
+    font-weight: 700;
+    margin: 0;
+  }
+
+  .c-service__body p {
+    color: var(--color-text-muted);
+    line-height: 2;
+    margin: 0 0 1.25rem;
+  }
+
+  .c-service__body ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .c-service__body li {
+    position: relative;
+    padding-left: 1.25rem;
+    margin-bottom: 0.45rem;
+    color: var(--color-text-muted);
+    font-size: 0.9375rem;
+  }
+
+  .c-service__body li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.85em;
+    width: 10px;
+    height: 2px;
+    background: var(--color-primary);
+  }
+
+  @media (max-width: 900px) {
+    .c-service {
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+      padding: 2rem 0;
+    }
+  }
+</style>

@@ -14,27 +14,22 @@ const c = getIndividualContent(locale);
 const contactPath = localePath(locale, '/contact');
 ---
 
+<div class:list={{ "i-transition": locale === "ja" }}>
 <section class="i-hero">
   <div class="container i-hero__grid">
     <div>
       <p class="i-eyebrow">{c.heroLabel}</p>
-      <h1 class="i-hero__title">{c.heroTitle}</h1>
+      <h1 class="i-hero__title">{locale === "ja" ? <><span>人生の移行を支える</span><span>パートナー。</span></> : c.heroTitle}</h1>
       <p class="i-hero__lead">{c.heroLead}</p>
+      <div class="i-hero__action"><ArrowLink href={contactPath}>{c.contactLabel}</ArrowLink></div>
     </div>
     <aside class="i-panel">
       <p class="i-panel__kicker">{c.panelKicker}</p>
       <p class="i-panel__title">{c.panelTitle}</p>
       <p class="i-panel__body">{c.panelBody}</p>
-      <div class="i-metrics">
-        {c.metrics.map((m) => (
-          <div>
-            <b>{m.value}</b>
-            <span>{m.label}</span>
-          </div>
-        ))}
-      </div>
     </aside>
   </div>
+  {locale === "ja" && <img class="i-hero__photo" src="https://images.unsplash.com/photo-1583078603507-65d00910f610?fit=max&fm=jpg&q=80&w=1080" alt="鏡に映る植物と、光の入る落ち着いた室内" width="1080" height="720" fetchpriority="high" />}
 </section>
 
 <section class="section section--white">
@@ -60,6 +55,7 @@ const contactPath = localePath(locale, '/contact');
     <div>
       <p class="i-label">{c.forLabel}</p>
       <h2 class="section-title">{c.forTitle}</h2>
+      {locale === "ja" && <img class="i-photo i-audience-photo" src="https://images.unsplash.com/photo-1517495306984-f84210f9daa8?fit=max&fm=jpg&q=80&w=1080" alt="淡い青から白へと広がる空" width="1080" height="720" loading="lazy" />}
     </div>
     <ul class="i-list">
       {c.forItems.map((item) => <li>{item}</li>)}
@@ -67,12 +63,15 @@ const contactPath = localePath(locale, '/contact');
   </div>
 </section>
 
+
+
 <section class="section section--white">
   <div class="container i-flow">
     <div class="i-flow__intro">
       <p class="i-label">{c.sessionLabel}</p>
       <h2 class="section-title">{c.sessionTitle}</h2>
       <p class="section-lead">{c.sessionLead}</p>
+      {locale === "ja" && <img class="i-photo i-process-photo" src="https://images.unsplash.com/photo-1620325867502-221cfb5faa5f?fit=max&fm=jpg&q=80&w=1080" alt="考えを整理するためのノートと道具" width="1080" height="720" loading="lazy" />}
     </div>
     <div class="i-flow__list">
       {c.sessionSteps.map((step) => (
@@ -87,6 +86,26 @@ const contactPath = localePath(locale, '/contact');
     </div>
   </div>
 </section>
+
+{locale === 'ja' && (
+<section class="section section--white" aria-labelledby="partner-story">
+  <div class="container i-story">
+    <div>
+      <p class="i-label">WHY A DISCUSSION PARTNER</p>
+      <h2 class="section-title" id="partner-story">「コーチ」と名乗るより、<br />隣で考える存在でいたい。</h2>
+      <p class="i-story__signature">柳沢 紀子 / Kelly</p>
+      <img class="i-photo i-journal-photo" src="https://images.unsplash.com/photo-1550592704-6c76defa9985?fit=max&fm=jpg&q=80&w=1080" alt="自分の考えをノートに書く時間" width="1080" height="720" loading="lazy" />
+    </div>
+    <div class="i-story__body">
+      <p>キャリアや人生の相談に乗るなかで、自分の関わり方をどう呼ぶか、ずっとしっくりくる言葉を探していました。私が大切にしたいのは、相手の人生に向き合い、一緒に考えること。その距離感を表しているのが「ディスカッションパートナー」です。</p>
+      <p>友達には話しづらいことも、会社では見せにくい迷いもある。だから、肩書きや周囲の期待から少し離れて、先入観なく話せる関係を大切にしています。聞いてほしいときには聞き、別の視点がほしいときには一緒に考える。求めていない助言を押しつけず、率直に向き合います。</p>
+      <p>私自身、いくつもの移行を経て今があります。積み重ねてきた経験を持ったまま、これからの日々をより納得のいくものにしていく。その移行を、考えるところから行動するところまで支えたい。それが、人生の移行を支えるパートナー（Transition Partner）として大切にしていることです。</p>
+      <p>考える相手がほしいときもあれば、決めたことを実行し続けるための相手がほしいときもある。対話のパートナーとして、そしてアカウンタビリティーパートナーとして、あなた自身の判断と行動を支えます。</p>
+      <a class="i-story__link" href="https://note.com/kelly_note/n/ndb4d2e3b036f">この考えの原点：note「コーチと名乗りたくない理由」 ↗</a>
+    </div>
+  </div>
+</section>
+)}
 
 <section class="section" id="price">
   <div class="container">
@@ -112,6 +131,7 @@ const contactPath = localePath(locale, '/contact');
 
 <section class="section section--white">
   <div class="container">
+    {locale === "ja" && <img class="i-photo i-closing-photo" src="https://images.unsplash.com/photo-1514477917009-389c76a86b68?fit=max&fm=jpg&q=80&w=1080" alt="光の広がる空" width="1080" height="720" loading="lazy" />}
     <div class="i-closing">
       <h2 class="section-title">{c.closingTitle}</h2>
       <p class="section-lead">{c.closingBody}</p>
@@ -122,7 +142,16 @@ const contactPath = localePath(locale, '/contact');
   </div>
 </section>
 
+</div>
+
 <style>
+  .i-hero__action { margin-top: 2rem; }
+  .i-story { display: grid; grid-template-columns: .9fr 1.1fr; gap: 4rem; }
+  .i-story__body p { line-height: 2; margin: 0 0 1.4rem; color: var(--color-text-muted); }
+  .i-story__signature { color: var(--color-primary); margin-top: 2rem; font-size: .9rem; }
+  .i-story__link { color: var(--color-primary); text-underline-offset: .3em; font-size: .85rem; }
+  @media (max-width: 900px) { .i-story { grid-template-columns: 1fr; gap: 1.5rem; } }
+
   .i-eyebrow,
   .i-label {
     font-family: var(--font-en);
@@ -422,4 +451,54 @@ const contactPath = localePath(locale, '/contact');
       padding: 1.5rem 1.25rem;
     }
   }
+
+  .i-transition .i-hero__title span { display: inline-block; }
+  #partner-story { scroll-margin-top: calc(var(--header-height) + 2rem); }
+  /* Images and editorial rhythm adapted from the original Studio individual page. */
+  .i-transition .section { padding-block: 6rem; }
+  .i-transition .i-label::after { content: ''; display: block; width: 48px; height: 1px; background: #9da9d5; margin-top: 1.2rem; }
+  .i-transition .i-hero { padding-top: 4rem; }
+  .i-transition .i-hero__grid { grid-template-columns: 1.3fr .7fr; align-items: start; gap: 5rem; padding-bottom: 4rem; }
+  .i-transition .i-hero__title { max-width: 760px; }
+  .i-transition .i-hero__lead { font-size: 1rem; }
+  .i-transition .i-panel { background: transparent; color: var(--color-text); padding: 1rem 0 0 2rem; border-left: 1px solid var(--color-border); }
+  .i-transition .i-panel__kicker, .i-transition .i-metrics b { color: var(--color-primary); }
+  .i-transition .i-panel__body, .i-transition .i-metrics span { color: var(--color-text-muted); }
+  .i-transition .i-metrics { border-color: var(--color-border); }
+  .i-transition .i-panel__title { font-size: 1.2rem; }
+  .i-hero__photo { display: block; width: 94%; height: clamp(260px, 38vw, 500px); object-fit: cover; object-position: center 48%; border-radius: 0 80px 80px 0; }
+  .i-photo { display: block; width: 100%; object-fit: cover; border-radius: 24px; }
+  .i-audience-photo { height: 330px; margin-top: 2.5rem; }
+  .i-process-photo { height: 280px; margin-top: 2rem; }
+  .i-journal-photo { height: 330px; margin-top: 2rem; }
+  .i-transition .i-grid { border: 0; gap: 2rem; background: transparent; }
+  .i-transition .i-cell { border-top: 1px solid var(--color-border); padding: 1.8rem 0; background: transparent; }
+  .i-transition .i-split { grid-template-columns: .9fr 1.1fr; gap: 5rem; align-items: center; }
+  .i-transition .i-list { padding: .5rem 1.8rem; background: #fff; border: 0; border-radius: 24px; }
+  .i-transition .i-list li:last-child { border-bottom: 0; }
+  .i-transition .i-story { gap: 5rem; }
+  .i-transition .i-story__body { padding-top: 3rem; }
+  .i-transition .i-flow__intro { position: static; }
+  .i-transition .i-price { border-radius: 24px; overflow: hidden; }
+  .i-closing-photo { width: 40%; height: 360px; float: right; margin-left: 4rem; }
+  .i-transition .i-closing { max-width: none; padding-block: 2rem; }
+  .i-transition .section:last-child > .container::after { content: ''; display: block; clear: both; }
+  @media (max-width: 900px) {
+    .i-transition .i-hero__grid, .i-transition .i-split { grid-template-columns: 1fr; gap: 2.5rem; }
+    .i-transition .i-panel { border-left: 0; border-top: 1px solid var(--color-border); padding: 1.5rem 0 0; }
+    .i-transition .i-story { gap: 2rem; }
+    .i-transition .i-story__body { padding-top: 0; }
+    .i-audience-photo, .i-journal-photo, .i-process-photo { height: 300px; }
+    .i-closing-photo { float: none; width: 100%; height: 280px; margin: 0 0 2rem; }
+  }
+  @media (max-width: 600px) {
+    .i-transition .section { padding-block: 3.5rem; }
+    .i-transition .i-hero { padding-top: 2.5rem; }
+    .i-transition .i-hero__grid { padding-bottom: 2.5rem; }
+    .i-hero__photo { width: 96%; border-radius: 0 40px 40px 0; }
+    .i-transition .i-list { padding-inline: 1rem; }
+    .i-transition .i-grid { gap: .5rem; }
+    .i-photo { border-radius: 20px; }
+  }
+
 </style>

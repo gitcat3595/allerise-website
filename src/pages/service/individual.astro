@@ -2,19 +2,17 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import CtaSection from '../../components/CtaSection.astro';
 import IndividualContent from '../../components/IndividualContent.astro';
-import { getBusinessLine } from '../../data/business';
 import { getIndividualContent } from '../../data/individual';
 import { getLocale } from '../../i18n/locale';
 import { getSiteMeta } from '../../i18n/ui';
 
 const locale = getLocale(Astro.url);
-const line = getBusinessLine('individual', locale)!;
 const individual = getIndividualContent(locale);
 const site = getSiteMeta(locale);
 ---
 
 <BaseLayout
-  title={`${line.label}｜${line.tagline} | ${site.name}`}
+  title={`人生の移行を支えるパートナー｜Transition Partner | ${site.name}`}
   description={individual.heroLead}
 >
   <IndividualContent locale={locale} />
